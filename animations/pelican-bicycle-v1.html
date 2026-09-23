@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pelican on Two Wheels</title>
+  <style>
+    :root {
+      --ink: #18324b;
+      --sky-bottom: #e5f7ff;
+      --panel: rgba(255, 255, 255, 0.86);
+      --accent: #f26b4a;
+      --teal: #169b9d;
+      --gold: #f9c85c;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      color: var(--ink);
+      font-family: ui-rounded, "Avenir Next", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 16% 12%, rgba(255,255,255,.75) 0 4%, transparent 5%),
+        radial-gradient(circle at 87% 18%, rgba(255,255,255,.62) 0 5%, transparent 6%),
+        linear-gradient(145deg, #f7dd9a 0%, #f7ad83 47%, #cc8c9b 100%);
+    }
+    .card {
+      width: min(1080px, 100%);
+      overflow: hidden;
+      border: 1px solid rgba(24, 50, 75, .12);
+      border-radius: 28px;
+      background: var(--panel);
+      box-shadow: 0 24px 65px rgba(57, 45, 76, .24), 0 4px 12px rgba(57, 45, 76, .08);
+      backdrop-filter: blur(14px);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      padding: 24px 28px 18px;
+    }
+    .eyebrow { margin: 0 0 7px; color: var(--accent); font-size: .76rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { margin: 0; color: var(--ink); font-size: clamp(1.7rem, 3vw, 2.55rem); letter-spacing: -.045em; line-height: 1; }
+    .hint { max-width: 280px; margin: 0; color: rgba(24, 50, 75, .7); font-size: .92rem; line-height: 1.45; text-align: right; }
+    .stage-wrap { position: relative; padding: 0 20px 20px; }
+    svg { display: block; width: 100%; height: auto; border-radius: 22px; background: var(--sky-bottom); }
+    .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; padding: 16px 28px 21px; border-top: 1px solid rgba(24, 50, 75, .1); background: rgba(255,255,255,.46); }
+    button { border: 0; border-radius: 999px; padding: 10px 16px; color: white; background: var(--ink); font: inherit; font-size: .9rem; font-weight: 750; cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; box-shadow: 0 5px 12px rgba(24,50,75,.18); }
+    button:hover { transform: translateY(-1px); box-shadow: 0 7px 15px rgba(24,50,75,.24); }
+    button:active { transform: translateY(1px); }
+    button.secondary { color: var(--ink); background: #fff; }
+    .speed { display: flex; align-items: center; gap: 10px; margin-left: auto; color: rgba(24,50,75,.74); font-size: .86rem; font-weight: 700; }
+    input[type="range"] { width: 150px; accent-color: var(--accent); cursor: pointer; }
+
+    .cloud { animation: floatCloud 18s linear infinite; }
+    .cloud.slow { animation-duration: 28s; animation-delay: -9s; }
+    .reed { transform-box: fill-box; transform-origin: bottom center; animation: sway 3s ease-in-out infinite; }
+    .reed:nth-child(2n) { animation-delay: -.8s; animation-duration: 3.7s; }
+    .reed:nth-child(3n) { animation-delay: -1.4s; animation-duration: 4.2s; }
+    .bird-shadow { animation: shadowBreathe 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    .pelican { animation: rideBob 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center bottom; }
+    .body-feather { animation: featherLift 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: bottom center; }
+    .wing { animation: wingFlap 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: 26% 75%; }
+    .leg-front, .leg-back { transform-box: fill-box; transform-origin: top center; animation: pedal 1.1s linear infinite; }
+    .leg-back { animation-delay: -.55s; }
+    .wheel { transform-box: fill-box; transform-origin: center; animation: spin 1.1s linear infinite; }
+    .chain-ring { transform-box: fill-box; transform-origin: center; animation: spin 1.1s linear infinite reverse; }
+    .road-dash { animation: roadMove 1.1s linear infinite; }
+    .spark { animation: sparkle 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    .spark:nth-child(2) { animation-delay: -.6s; }
+    .spark:nth-child(3) { animation-delay: -1.2s; }
+    .paused * { animation-play-state: paused !important; }
+    @keyframes floatCloud { from { transform: translateX(-90px); } to { transform: translateX(1050px); } }
+    @keyframes sway { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(5deg); } }
+    @keyframes rideBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+    @keyframes featherLift { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-2deg); } }
+    @keyframes wingFlap { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-7deg); } }
+    @keyframes pedal { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes roadMove { from { transform: translateX(0); } to { transform: translateX(-96px); } }
+    @keyframes shadowBreathe { 0%, 100% { transform: scaleX(1); opacity: .23; } 50% { transform: scaleX(.9); opacity: .16; } }
+    @keyframes sparkle { 0%, 100% { opacity: .1; transform: scale(.7) rotate(0deg); } 50% { opacity: 1; transform: scale(1.15) rotate(90deg); } }
+    @media (max-width: 700px) {
+      body { padding: 10px; }
+      header { display: block; padding: 20px 20px 14px; }
+      .hint { margin-top: 10px; text-align: left; }
+      .stage-wrap { padding: 0 10px 10px; }
+      .controls { padding-inline: 20px; }
+      .speed { width: 100%; margin-left: 0; }
+      input[type="range"] { flex: 1; }
+    }
+  </style>
+<style id="pelican-preview-layout">
+html.pelican-embedded { min-height: 0 !important; height: auto !important; overflow: hidden; }
+.pelican-embedded body { min-height: 0 !important; height: auto !important; display: flow-root !important; width: 100%; box-sizing: border-box; overflow: hidden; }
+.pelican-embedded body > main, .pelican-embedded body > .card, .pelican-embedded .page { max-width: 100%; margin-left: auto; margin-right: auto; }
+.pelican-embedded :is(header, .title, .controls, nav, .transport, footer) { flex-wrap: wrap; }
+.pelican-embedded :is(header, .title, .controls, nav, .transport, footer) > * { min-width: 0; }
+.pelican-embedded :is(h1, .eyebrow) { overflow-wrap: anywhere; }
+.pelican-embedded input[type="range"] { max-width: 100%; }
+</style>
+
+</head>
+<body>
+  <main class="card">
+    <header>
+      <div><p class="eyebrow">A seaside joyride</p><h1>Pelican on two wheels</h1></div>
+      <p class="hint">A breezy SVG scene with a determined rider, a very large beak, and a little bell.</p>
+    </header>
+    <div class="stage-wrap">
+      <svg id="scene" viewBox="0 0 1000 600" role="img" aria-labelledby="title desc">
+        <title id="title">A pelican riding a bicycle beside the sea</title>
+        <desc id="desc">A stylized animated pelican pedals a teal bicycle along a seaside road while clouds drift overhead.</desc>
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#91d5f5"/><stop offset="1" stop-color="#f2fbff"/></linearGradient>
+          <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#68c6cf"/><stop offset="1" stop-color="#1a8ea5"/></linearGradient>
+          <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#455f6d"/><stop offset="1" stop-color="#263c4d"/></linearGradient>
+          <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="7"/></filter>
+        </defs>
+        <rect width="1000" height="600" rx="22" fill="url(#sky)"/>
+        <circle cx="830" cy="125" r="62" fill="#ffe2a0" opacity=".9"/><circle cx="830" cy="125" r="83" fill="#ffe2a0" opacity=".17"/>
+        <g class="cloud" fill="#fff" opacity=".78"><ellipse cx="30" cy="104" rx="75" ry="20"/><ellipse cx="-8" cy="93" rx="32" ry="22"/><ellipse cx="55" cy="86" rx="34" ry="32"/><ellipse cx="91" cy="98" rx="29" ry="22"/></g>
+        <g class="cloud slow" fill="#fff" opacity=".58"><ellipse cx="280" cy="170" rx="68" ry="18"/><ellipse cx="247" cy="160" rx="28" ry="22"/><ellipse cx="294" cy="149" rx="32" ry="29"/><ellipse cx="335" cy="163" rx="28" ry="20"/></g>
+        <path d="M0 305 Q150 260 310 302 T620 298 T1000 284 V420 H0Z" fill="#75bfaf" opacity=".72"/>
+        <path d="M0 350 Q150 317 303 348 T630 346 T1000 330 V460 H0Z" fill="url(#sea)"/>
+        <path d="M0 365 Q170 342 325 367 T635 365 T1000 352" fill="none" stroke="#d5f5ef" stroke-width="8" stroke-linecap="round" opacity=".55"/>
+        <path d="M40 402 Q185 378 340 401 T650 399 T962 385" fill="none" stroke="#d5f5ef" stroke-width="5" stroke-linecap="round" opacity=".42"/>
+        <g class="reed" fill="none" stroke-linecap="round"><path d="M108 393 C102 364 103 347 93 323 M106 366 C120 346 130 335 146 326 M104 352 C91 340 81 332 70 318" stroke="#24796f" stroke-width="7"/><path d="M170 393 C176 365 175 346 188 323 M174 361 C160 346 151 337 143 322" stroke="#2b8978" stroke-width="6"/><path d="M882 389 C886 358 885 341 896 320 M886 359 C872 343 864 331 851 320 M889 348 C903 336 914 328 925 315" stroke="#24796f" stroke-width="7"/><path d="M935 390 C931 366 932 348 923 332 M932 365 C946 350 957 344 971 332" stroke="#2b8978" stroke-width="6"/></g>
+        <path d="M0 420 H1000 V600 H0Z" fill="url(#road)"/>
+        <path d="M0 430 Q250 410 500 428 T1000 422" fill="none" stroke="#708a92" stroke-width="7" opacity=".55"/>
+        <g class="road-dash" fill="#f6d57a" opacity=".88"><rect x="-35" y="504" width="68" height="8" rx="4"/><rect x="98" y="504" width="68" height="8" rx="4"/><rect x="231" y="504" width="68" height="8" rx="4"/><rect x="364" y="504" width="68" height="8" rx="4"/><rect x="497" y="504" width="68" height="8" rx="4"/><rect x="630" y="504" width="68" height="8" rx="4"/><rect x="763" y="504" width="68" height="8" rx="4"/><rect x="896" y="504" width="68" height="8" rx="4"/></g>
+        <ellipse class="bird-shadow" cx="515" cy="517" rx="188" ry="22" fill="#142a3a" filter="url(#softShadow)"/>
+        <g id="bike" stroke-linecap="round" stroke-linejoin="round">
+          <g class="wheel" fill="none" stroke="#182f43" stroke-width="8">
+            <circle cx="385" cy="454" r="64" fill="#a9d9d0" stroke="#edf7ee" stroke-width="5" opacity=".92"/><circle cx="685" cy="454" r="64" fill="#a9d9d0" stroke="#edf7ee" stroke-width="5" opacity=".92"/>
+            <g stroke="#356072" stroke-width="2.5" opacity=".75"><path d="M385 390 V518 M321 454 H449 M340 409 L430 499 M430 409 L340 499"/><path d="M685 390 V518 M621 454 H749 M640 409 L730 499 M730 409 L640 499"/></g>
+          </g>
+          <path d="M385 454 L485 454 L565 350 L685 454 L565 454 L485 454 L440 381 L565 350" fill="none" stroke="#169b9d" stroke-width="11"/>
+          <path d="M565 350 L582 302" fill="none" stroke="#169b9d" stroke-width="10"/><path d="M566 302 C581 294 598 295 614 302" fill="none" stroke="#18324b" stroke-width="9"/>
+          <path d="M438 382 L416 352" fill="none" stroke="#169b9d" stroke-width="9"/><path d="M406 351 L432 351" fill="none" stroke="#18324b" stroke-width="8"/>
+          <circle class="chain-ring" cx="485" cy="454" r="18" fill="#f9c85c" stroke="#18324b" stroke-width="5"/><circle cx="485" cy="454" r="5" fill="#18324b"/>
+          <path d="M485 454 L511 427 M485 454 L460 478" fill="none" stroke="#f9c85c" stroke-width="6"/><path d="M505 424 h17 M450 481 h-17" fill="none" stroke="#18324b" stroke-width="6"/>
+          <path d="M552 330 Q571 321 588 331" fill="none" stroke="#f26b4a" stroke-width="6"/><circle cx="583" cy="329" r="6" fill="#f9c85c" stroke="#18324b" stroke-width="3"/>
+        </g>
+        <g class="pelican">
+          <g class="body-feather"><path d="M411 342 C407 290 444 254 497 255 C539 256 565 284 567 334 C569 367 548 391 511 398 C459 408 418 387 411 342Z" fill="#f8f6ed" stroke="#18324b" stroke-width="6"/><path d="M427 302 C458 276 509 276 542 303 C528 286 514 272 491 267 C459 264 437 278 427 302Z" fill="#d9e7e4" opacity=".9"/><path d="M467 392 C469 365 471 344 474 327" fill="none" stroke="#c4d9d6" stroke-width="5" opacity=".8"/><path d="M500 395 C500 367 502 348 505 334" fill="none" stroke="#c4d9d6" stroke-width="5" opacity=".8"/></g>
+          <g class="wing"><path d="M432 304 C398 321 391 359 410 381 C434 397 469 380 493 353 C480 327 462 310 432 304Z" fill="#d7e5e2" stroke="#18324b" stroke-width="6"/><path d="M418 365 C443 358 462 344 476 327 M421 375 C446 368 467 354 482 339" fill="none" stroke="#abc9c6" stroke-width="4"/></g>
+          <path d="M527 278 C527 235 548 204 579 198 C614 191 641 216 637 251 C634 280 613 301 582 304 C556 306 537 295 527 278Z" fill="#f8f6ed" stroke="#18324b" stroke-width="6"/><path d="M550 211 C567 200 593 199 610 211 C592 205 573 208 557 222Z" fill="#d9e7e4"/><path d="M553 259 C545 238 547 221 563 211" fill="none" stroke="#c4d9d6" stroke-width="4"/>
+          <circle cx="602" cy="235" r="8" fill="#18324b"/><circle cx="605" cy="232" r="2.5" fill="#fff"/>
+          <path d="M574 257 C602 257 630 266 663 279 C671 282 671 294 661 297 C625 302 590 292 564 280Z" fill="#f59c55" stroke="#18324b" stroke-width="6"/><path d="M569 279 C600 283 630 286 661 280" fill="none" stroke="#d76e4d" stroke-width="5"/><path d="M660 281 C679 287 687 294 689 302 C676 303 664 300 655 295" fill="#e57c50" stroke="#18324b" stroke-width="5"/>
+          <path class="leg-front" d="M488 386 L485 432 L505 454" fill="none" stroke="#f59c55" stroke-width="8"/><path class="leg-back" d="M523 389 L535 425 L511 454" fill="none" stroke="#e57c50" stroke-width="8"/>
+          <path d="M498 452 h20 M504 458 h-18 M507 452 h16" fill="none" stroke="#18324b" stroke-width="5"/><path d="M506 450 h18 M516 457 h-18 M517 450 h15" fill="none" stroke="#18324b" stroke-width="5"/>
+          <path d="M530 202 C520 187 524 171 540 163" fill="none" stroke="#18324b" stroke-width="5"/><path d="M538 164 l-2 -11 M539 164 l8 -8" fill="none" stroke="#f26b4a" stroke-width="4" stroke-linecap="round"/>
+        </g>
+        <g class="spark" fill="#f9c85c"><path d="M290 410 l5 12 12 5-12 5-5 12-5-12-12-5 12-5Z"/><path d="M762 337 l4 10 10 4-10 4-4 10-4-10-10-4 10-4Z"/><path d="M742 405 l3 8 8 3-8 3-3 8-3-8-8-3 8-3Z"/></g>
+        <text x="52" y="555" fill="#e7f8f2" font-size="15" font-weight="700" letter-spacing=".12em">SEASIDE LOOP • KEEP PEDALING</text>
+      </svg>
+    </div>
+    <div class="controls">
+      <button id="toggle" type="button" aria-pressed="false">Pause ride</button>
+      <button id="reset" class="secondary" type="button">Reset motion</button>
+      <label class="speed" for="speed">Pedal speed <input id="speed" type="range" min="0.55" max="1.8" step="0.05" value="1" /></label>
+    </div>
+  </main>
+  <script>
+    const scene = document.querySelector('#scene');
+    const toggle = document.querySelector('#toggle');
+    const reset = document.querySelector('#reset');
+    const speed = document.querySelector('#speed');
+    const animatedSelectors = ['.cloud', '.reed', '.bird-shadow', '.pelican', '.body-feather', '.wing', '.leg-front', '.leg-back', '.wheel', '.chain-ring', '.road-dash', '.spark'];
+    function setSpeed(multiplier) {
+      animatedSelectors.forEach((selector) => {
+        scene.querySelectorAll(selector).forEach((element) => {
+          const current = parseFloat(getComputedStyle(element).animationDuration) || 1;
+          element.style.animationDuration = (current / multiplier) + 's';
+        });
+      });
+    }
+    toggle.addEventListener('click', () => {
+      const paused = scene.classList.toggle('paused');
+      toggle.textContent = paused ? 'Resume ride' : 'Pause ride';
+      toggle.setAttribute('aria-pressed', String(paused));
+    });
+    reset.addEventListener('click', () => {
+      scene.classList.add('paused');
+      void scene.offsetWidth;
+      scene.classList.remove('paused');
+      toggle.textContent = 'Pause ride';
+      toggle.setAttribute('aria-pressed', 'false');
+      speed.value = '1';
+      setSpeed(1);
+    });
+    speed.addEventListener('input', (event) => setSpeed(Number(event.target.value)));
+  </script>
+<script id="pelican-preview-sizing">
+(() => {
+  if (window.parent === window) return;
+  document.documentElement.classList.add('pelican-embedded');
+  let pending = false;
+  let lastHeight = 0;
+  function measure() {
+    pending = false;
+    if (document.documentElement.clientWidth === 0) return;
+    const height = Math.ceil(document.body.getBoundingClientRect().height) + 2;
+    if (height > 0 && height !== lastHeight) {
+      lastHeight = height;
+      window.parent.postMessage({type: 'pelican-preview-height', height}, '*');
+    }
+  }
+  function schedule() {
+    if (!pending) { pending = true; requestAnimationFrame(measure); }
+  }
+  new ResizeObserver(schedule).observe(document.body);
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  window.addEventListener('message', event => {
+    if (event.source === window.parent && event.data?.type === 'pelican-preview-measure') {
+      lastHeight = 0;
+      schedule();
+    }
+  });
+  document.fonts.ready.then(schedule);
+  schedule();
+})();
+</script>
+</body>
+</html>

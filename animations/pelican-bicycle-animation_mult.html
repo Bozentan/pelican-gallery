@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pelican and a Day at the Lighthouse</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17324d;
+      --paper: #fffdf7;
+      --coral: #ed6d4b;
+      --gold: #f6c95f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 16px 0;
+      background: #d9eef4;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .card {
+      width: min(1120px, 96vw);
+      overflow: hidden;
+      border: 1px solid rgba(23, 50, 77, .16);
+      border-radius: 24px;
+      background: white;
+      box-shadow: 0 24px 70px rgba(23, 50, 77, .2);
+    }
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px 22px;
+      color: var(--ink);
+      background: var(--paper);
+      font-size: clamp(1rem, 2.6vw, 1.32rem);
+      font-weight: 800;
+      letter-spacing: .015em;
+    }
+    .controls { display: flex; gap: 8px; }
+    button {
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      padding: 8px 15px;
+      color: var(--ink);
+      background: white;
+      font: inherit;
+      font-size: .8rem;
+      cursor: pointer;
+    }
+    button:hover { background: #fff0d9; }
+    button:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; }
+    svg { display: block; width: 100%; height: auto; background: #9ce1f2; }
+    .scene { transition: opacity .45s ease; }
+    .hidden { opacity: 0; pointer-events: none; }
+    .show { opacity: 1; }
+    .cloud { animation: drift 24s linear infinite; }
+    .cloud.slow { animation-duration: 38s; animation-delay: -16s; }
+    .wave { animation: wave 2.5s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+    .flag { animation: wave-flag .55s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: left center; }
+    .screen-glow { animation: glow 1.4s ease-in-out infinite alternate; }
+    .cursor { animation: blink .85s steps(2, start) infinite; }
+    .angry-mark { animation: shake .18s linear infinite alternate; transform-box: fill-box; transform-origin: center; }
+    .splash { animation: pop .7s ease-out both; }
+    @keyframes drift { from { transform: translateX(-160px); } to { transform: translateX(1080px); } }
+    @keyframes wave { from { transform: translateY(0); } to { transform: translateY(5px); } }
+    @keyframes wave-flag { from { transform: skewY(0deg); } to { transform: skewY(-9deg); } }
+    @keyframes glow { from { opacity: .45; } to { opacity: .95; } }
+    @keyframes blink { 50% { opacity: 0; } }
+    @keyframes shake { from { transform: translateX(-2px) rotate(-3deg); } to { transform: translateX(2px) rotate(3deg); } }
+    @keyframes pop { from { opacity: 0; transform: scale(.5); } to { opacity: 1; transform: scale(1); } }
+    .paused *, .paused *::before, .paused *::after { animation-play-state: paused !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+<style id="pelican-preview-layout">
+#status { display: none !important; }
+html.pelican-embedded { min-height: 0 !important; height: auto !important; overflow: hidden; }
+.pelican-embedded body { min-height: 0 !important; height: auto !important; display: flow-root !important; width: 100%; box-sizing: border-box; overflow: hidden; }
+.pelican-embedded body > main, .pelican-embedded body > .card, .pelican-embedded .page { max-width: 100%; margin-left: auto; margin-right: auto; }
+.pelican-embedded :is(header, .title, .controls, nav, .transport, footer) { flex-wrap: wrap; }
+.pelican-embedded :is(header, .title, .controls, nav, .transport, footer) > * { min-width: 0; }
+.pelican-embedded :is(h1, .eyebrow) { overflow-wrap: anywhere; }
+.pelican-embedded input[type="range"] { max-width: 100%; }
+</style>
+
+</head>
+<body>
+  <main class="card" aria-label="Cartoon: a pelican rides to work at a lighthouse">
+    <div class="title">
+      <span>Pelican and a Day at the Lighthouse</span>
+      <span class="controls"><button type="button" id="toggle" aria-pressed="false">Pause</button><button type="button" id="replay">Replay</button></span>
+    </div>
+    <svg viewBox="0 0 1000 620" role="img" aria-labelledby="story-title story-desc">
+      <title id="story-title">A pelican rides to work, turns on the computer, and gets angry because ChatGPT is not working</title>
+      <desc id="story-desc">A short looping cartoon in three scenes: the road to the lighthouse, the office, and a comic computer toss through the window.</desc>
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8ed8f2"/><stop offset="1" stop-color="#edfaff"/></linearGradient>
+        <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#52bfd2"/><stop offset="1" stop-color="#247ca4"/></linearGradient>
+        <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#40556d"/><stop offset="1" stop-color="#1b2b40"/></linearGradient>
+        <linearGradient id="room" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fdf3d9"/><stop offset="1" stop-color="#e8d0a2"/></linearGradient>
+        <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="7"/></filter>
+      </defs>
+
+      <!-- SCENE 1: ride to work -->
+      <g id="rideScene" class="scene show">
+        <rect width="1000" height="620" fill="url(#sky)"/>
+        <circle cx="820" cy="92" r="49" fill="#ffd86b"/><circle cx="820" cy="92" r="75" fill="#ffd86b" opacity=".18"/>
+        <g class="cloud" fill="white" opacity=".78"><path d="M-120 150c27-38 76-36 103-3 20-55 93-51 111 8 43-27 95 0 97 45H-120Z"/></g>
+        <g class="cloud slow" fill="white" opacity=".55"><path d="M-200 77c27-35 67-29 87 5 25-44 78-30 87 12 38-16 77 12 78 43h-252Z"/></g>
+        <path d="M0 316 Q155 292 314 313 T628 311 T1000 314 V464 H0Z" fill="url(#sea)"/>
+        <g class="wave" fill="none" stroke="#a9e7e8" stroke-linecap="round"><path d="M0 350 Q120 331 240 349 T480 347 T720 350 T1000 345" stroke-width="8" opacity=".75"/><path d="M0 390 Q120 371 250 388 T500 386 T750 390 T1000 384" stroke-width="5" opacity=".5"/></g>
+        <path d="M0 431 C160 398 270 426 410 409 C560 391 660 431 790 407 C880 390 936 408 1000 397 V486 H0Z" fill="#e1d4a4"/>
+        <path d="M0 466 Q170 440 330 465 T660 460 T1000 459 V620 H0Z" fill="#75a45e"/>
+        <g transform="translate(806 232)">
+          <path d="M18 180 L32 43 H92 L108 180Z" fill="#f8f3dd" stroke="#17324d" stroke-width="5"/><path d="M27 86 H101 L98 111 H25Z" fill="#ed6d4b"/><path d="M21 44 H100 V72 H18Z" fill="#ed6d4b"/>
+          <rect x="19" y="17" width="83" height="27" rx="5" fill="#f17852" stroke="#17324d" stroke-width="5"/><path d="M23 15 L61-7 L100 15Z" fill="#17324d"/>
+          <rect x="44" y="126" width="27" height="54" rx="6" fill="#70bac5" stroke="#17324d" stroke-width="4"/><path d="M5 181H122" stroke="#17324d" stroke-width="8" stroke-linecap="round"/>
+          <text x="60" y="59" text-anchor="middle" fill="#17324d" font-size="13" font-weight="800">WORK</text>
+        </g>
+        <path d="M0 476 Q500 431 1000 476 V620 H0Z" fill="url(#road)"/>
+        <g fill="none" stroke="#f7d477" stroke-width="8" stroke-linecap="round"><path d="M-80 574H0M82 564H162M244 552H324M406 540H486M568 529H648M730 520H810M892 514H972"/></g>
+        <g id="rideMotion" transform="translate(-250 0)">
+          <ellipse cx="480" cy="533" rx="178" ry="17" fill="#112235" opacity=".28" filter="url(#shadow)"/>
+          <g id="bikeWheels" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <g id="rideRear"><circle cx="350" cy="474" r="59" stroke="#e8f5f7" stroke-width="7"/><circle cx="350" cy="474" r="63" stroke="#17324d" stroke-width="4"/><path d="M350 474V415M350 474L401 503M350 474L298 501M350 474L388 433M350 474L313 434" stroke="#b9d8df" stroke-width="2"/></g>
+            <g id="rideFront"><circle cx="650" cy="474" r="59" stroke="#e8f5f7" stroke-width="7"/><circle cx="650" cy="474" r="63" stroke="#17324d" stroke-width="4"/><path d="M650 474V415M650 474L701 503M650 474L598 501M650 474L688 433M650 474L613 434" stroke="#b9d8df" stroke-width="2"/></g>
+          </g>
+          <g stroke="#17324d" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M350 474 L457 391 L523 474 Z M457 391 L610 391 L523 474 M610 391 L650 474" fill="none" stroke="#f26b38" stroke-width="10"/>
+            <path d="M610 391 L600 361 Q597 348 580 351" fill="none" stroke-width="8"/><path d="M457 391L451 372M432 371H471" fill="none" stroke-width="9"/>
+            <circle cx="523" cy="474" r="16" fill="#f5b83d" stroke-width="5"/>
+          </g>
+          <g transform="translate(0 0)">
+            <ellipse cx="482" cy="309" rx="69" ry="80" fill="#fffdf5" stroke="#17324d" stroke-width="6"/>
+            <path d="M498 261 Q520 198 576 189 Q638 178 658 226 Q672 261 646 286 Q614 311 560 290Z" fill="#fffdf5" stroke="#17324d" stroke-width="6"/>
+            <ellipse cx="603" cy="217" rx="45" ry="38" fill="#fffdf5" stroke="#17324d" stroke-width="6"/>
+            <path d="M585 180Q592 149 609 174Q624 141 636 177Q654 154 655 191" fill="#f7f4e9" stroke="#17324d" stroke-width="5"/>
+            <circle cx="625" cy="211" r="7" fill="#17324d" stroke="none"/><circle cx="627" cy="208" r="2" fill="white" stroke="none"/>
+            <path d="M638 232L781 247Q728 300 659 275Q639 260 638 232Z" fill="#f7b76c" stroke="#17324d" stroke-width="6"/><path d="M637 225Q717 225 788 247L637 244Z" fill="#f59b43" stroke="#17324d" stroke-width="5"/>
+            <path d="M495 260Q539 270 560 319Q539 356 505 338Q480 314 495 260Z" fill="#ebe8da" stroke="#17324d" stroke-width="6"/>
+            <path d="M514 283Q536 306 543 328" fill="none" stroke="#c4c6b8" stroke-width="4"/>
+            <path d="M477 375L502 434M524 373L537 434" stroke="#dc8735" stroke-width="9" stroke-linecap="round"/><path d="M493 434H525M530 434H562" stroke="#dc8735" stroke-width="10" stroke-linecap="round"/>
+            <path d="M553 316Q572 336 590 356M541 327Q563 342 582 358" fill="none" stroke="#dc8735" stroke-width="8" stroke-linecap="round"/>
+          </g>
+        </g>
+        <g transform="translate(82 286)"><path d="M0 0V108" stroke="#17324d" stroke-width="5"/><path class="flag" d="M3 5Q33 15 66 5V48Q33 58 3 48Z" fill="#ed6d4b" stroke="#17324d" stroke-width="4"/></g>
+        <g id="rideCaption" opacity="1"><rect x="48" y="44" width="380" height="63" rx="20" fill="#fffdf7" stroke="#17324d" stroke-width="3"/><path d="M118 107L142 128L162 107" fill="#fffdf7" stroke="#17324d" stroke-width="3"/><text x="76" y="82" fill="#17324d" font-size="23" font-weight="800">07:55  Off to work!</text></g>
+      </g>
+
+      <!-- SCENE 2: lighthouse office -->
+      <g id="officeScene" class="scene hidden">
+        <rect width="1000" height="620" fill="url(#room)"/>
+        <path d="M0 430 Q500 407 1000 430 V620 H0Z" fill="#b77d5e"/>
+        <path d="M0 435 Q500 410 1000 435" fill="none" stroke="#7f4f46" stroke-width="9"/>
+        <path d="M71 80 Q500 24 929 80 V435 H71Z" fill="#f7edd0" stroke="#17324d" stroke-width="7"/>
+        <path d="M685 132 Q795 75 902 132 V333 H685Z" fill="#64bdd0" stroke="#17324d" stroke-width="7"/><path d="M793 86V340M679 230H907" stroke="#17324d" stroke-width="6"/>
+        <path d="M694 290Q794 257 892 290" fill="none" stroke="#e6f8f1" stroke-width="9" opacity=".75"/>
+        <g transform="translate(88 96)"><rect x="0" y="0" width="182" height="52" rx="16" fill="#ed6d4b"/><text x="91" y="34" text-anchor="middle" fill="white" font-size="21" font-weight="900">LIGHTHOUSE #7</text></g>
+        <g id="desk"><path d="M154 447H699" stroke="#6c473e" stroke-width="17" stroke-linecap="round"/><path d="M191 447L169 585M661 447L686 585" stroke="#6c473e" stroke-width="14"/><path d="M214 464H628V511H214Z" fill="#8b5c4d"/><path d="M300 511V583M544 511V583" stroke="#6c473e" stroke-width="11"/>
+          <g id="monitor"><rect x="396" y="272" width="260" height="161" rx="15" fill="#17324d"/><rect id="screen" x="411" y="287" width="230" height="125" rx="8" fill="#d9f3f8"/><rect x="493" y="435" width="66" height="17" rx="8" fill="#17324d"/><path d="M459 452H596" stroke="#17324d" stroke-width="10" stroke-linecap="round"/><rect x="298" y="374" width="80" height="77" rx="9" fill="#40556d"/><circle cx="320" cy="394" r="6" fill="#9ee4b5"/><circle cx="341" cy="394" r="6" fill="#f6c95f"/><path d="M315 420H360" stroke="#6a8193" stroke-width="5"/></g>
+          <g id="screenWelcome"><text x="526" y="326" text-anchor="middle" fill="#17324d" font-size="21" font-weight="800">Good morning!</text><text x="526" y="360" text-anchor="middle" fill="#4d7180" font-size="16">Lighthouse check: OK</text><circle cx="526" cy="390" r="8" fill="#65bf84"/></g>
+          <g id="screenError" opacity="0"><rect x="411" y="287" width="230" height="125" rx="8" fill="#ffe5df"/><text x="526" y="323" text-anchor="middle" fill="#bd3e32" font-size="19" font-weight="900">OH NO!</text><text x="526" y="349" text-anchor="middle" fill="#17324d" font-size="16" font-weight="700">ChatGPT is not working</text><text x="526" y="377" text-anchor="middle" fill="#bd3e32" font-size="14">Error 503 · please try again later</text><text class="cursor" x="526" y="400" text-anchor="middle" fill="#bd3e32" font-size="14">▮</text></g>
+        </g>
+        <g id="officePelican" transform="translate(140 0)">
+          <ellipse cx="202" cy="539" rx="98" ry="15" fill="#513b39" opacity=".25"/>
+          <ellipse cx="200" cy="345" rx="67" ry="83" fill="#fffdf5" stroke="#17324d" stroke-width="6"/>
+          <path d="M220 297Q237 237 292 227Q347 216 369 263Q383 295 358 320Q326 343 276 324Z" fill="#fffdf5" stroke="#17324d" stroke-width="6"/>
+          <ellipse cx="323" cy="256" rx="45" ry="38" fill="#fffdf5" stroke="#17324d" stroke-width="6"/><path d="M306 218Q313 187 329 212Q343 181 355 214Q372 191 375 228" fill="#f7f4e9" stroke="#17324d" stroke-width="5"/>
+          <circle cx="344" cy="252" r="7" fill="#17324d" stroke="none"/><circle cx="346" cy="249" r="2" fill="white" stroke="none"/>
+          <path d="M359 271L493 285Q439 336 377 313Q359 299 359 271Z" fill="#f7b76c" stroke="#17324d" stroke-width="6"/><path d="M358 264Q433 264 499 285L358 282Z" fill="#f59b43" stroke="#17324d" stroke-width="5"/>
+          <path id="officeWing" d="M217 296Q258 303 282 350Q261 389 229 369Q204 344 217 296Z" fill="#ebe8da" stroke="#17324d" stroke-width="6"/>
+          <path d="M237 318Q259 340 267 362" fill="none" stroke="#c4c6b8" stroke-width="4"/>
+          <path d="M195 411L214 493M245 410L256 493" stroke="#dc8735" stroke-width="9" stroke-linecap="round"/><path d="M198 495H233M249 495H283" stroke="#dc8735" stroke-width="10" stroke-linecap="round"/>
+          <g id="angryMarks" opacity="0"><path class="angry-mark" d="M303 208L319 226M331 201L334 225M359 207L347 229" stroke="#bd3e32" stroke-width="7" stroke-linecap="round"/></g>
+        </g>
+        <g id="officeBubble" opacity="0"><rect x="112" y="117" width="465" height="86" rx="20" fill="#fffdf7" stroke="#17324d" stroke-width="3"/><path d="M348 203L364 229L387 203" fill="#fffdf7" stroke="#17324d" stroke-width="3"/><text x="344" y="153" text-anchor="middle" fill="#17324d" font-size="20" font-weight="800">I’ll turn on the computer…</text><text x="344" y="181" text-anchor="middle" fill="#4d7180" font-size="16">And check that everything is calm at sea.</text></g>
+        <g id="errorBubble" opacity="0"><rect x="104" y="103" width="570" height="103" rx="20" fill="#fffdf7" stroke="#bd3e32" stroke-width="4"/><path d="M390 206L407 233L429 206" fill="#fffdf7" stroke="#bd3e32" stroke-width="4"/><text x="389" y="145" text-anchor="middle" fill="#bd3e32" font-size="24" font-weight="900">What?! ChatGPT is not working?!</text><text x="389" y="177" text-anchor="middle" fill="#17324d" font-size="17">But my shift has started!</text></g>
+        <g id="throwCaption" opacity="0"><rect x="90" y="48" width="790" height="58" rx="20" fill="#fffdf7" stroke="#17324d" stroke-width="3"/><text x="485" y="85" text-anchor="middle" fill="#17324d" font-size="22" font-weight="900">When ChatGPT won’t answer, the pelican takes matters into his own wings.</text></g>
+        <g id="officeComputer" transform="translate(0 0)"><rect x="396" y="272" width="260" height="161" rx="15" fill="#17324d"/><rect x="411" y="287" width="230" height="125" rx="8" fill="#ffe5df"/><path d="M493 435H559V452H493Z" fill="#17324d"/><path d="M459 452H596" stroke="#17324d" stroke-width="10" stroke-linecap="round"/></g>
+        <g id="flightTrail" opacity="0" fill="none" stroke="#bd3e32" stroke-width="6" stroke-linecap="round"><path d="M640 327Q731 286 805 201" stroke-dasharray="13 15"/><path d="M622 347Q703 330 753 279" stroke-dasharray="8 12"/></g>
+        <g id="windowOpen" opacity="0"><path d="M685 132Q795 75 902 132V333H685Z" fill="#64bdd0" stroke="#17324d" stroke-width="7"/><path d="M793 86V340M679 230H907" stroke="#17324d" stroke-width="6"/><path d="M684 133Q633 95 614 153L648 285Q670 304 688 286Z" fill="#ed6d4b" stroke="#17324d" stroke-width="6"/><path d="M902 133Q953 95 969 154L938 286Q916 305 899 286Z" fill="#ed6d4b" stroke="#17324d" stroke-width="6"/></g>
+        <g id="flyingComputer" opacity="0"><g transform="translate(0 0)"><rect x="0" y="0" width="135" height="90" rx="10" fill="#17324d"/><rect x="10" y="10" width="115" height="62" rx="5" fill="#ffe5df"/><text x="67" y="46" text-anchor="middle" fill="#bd3e32" font-size="13" font-weight="900">503!</text><path d="M48 90H87M36 97H99" stroke="#17324d" stroke-width="8" stroke-linecap="round"/></g></g>
+        <g id="splash" class="splash" opacity="0"><path d="M816 186l15-28M846 194l31-14M850 226l32 5M810 236l17 28" stroke="#f6c95f" stroke-width="8" stroke-linecap="round"/></g>
+      </g>
+
+      <!-- final title card -->
+      <g id="endCard" class="scene hidden"><rect width="1000" height="620" fill="#17324d"/><circle cx="800" cy="140" r="170" fill="#244d68"/><path d="M0 474Q500 430 1000 474V620H0Z" fill="#102237"/><path d="M108 192Q502 98 892 192" fill="none" stroke="#f6c95f" stroke-width="8" opacity=".8"/><text x="500" y="225" text-anchor="middle" fill="#f6c95f" font-size="37" font-weight="900">THE WORKDAY CONTINUES</text><text x="500" y="283" text-anchor="middle" fill="white" font-size="26">But the computer doesn’t.</text><g transform="translate(406 342)"><path d="M0 38L35 0L70 38L35 76Z" fill="#ed6d4b" stroke="#fff" stroke-width="5"/><path d="M35 20V55M19 38H51" stroke="#fff" stroke-width="6" stroke-linecap="round"/></g><text x="500" y="505" text-anchor="middle" fill="#d7eef4" font-size="19">Coming soon: “Pelican Fixes ChatGPT”</text></g>
+    </svg>
+    <div id="status" aria-live="polite" style="padding:10px 22px 14px;color:#537087;font-size:.8rem">Episode 1 · ride to work</div>
+  </main>
+  <script>
+    const card = document.querySelector('.card');
+    const toggle = document.getElementById('toggle');
+    const replay = document.getElementById('replay');
+    const status = document.getElementById('status');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const el = id => document.getElementById(id);
+    const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+    const ease = n => n < .5 ? 4 * n * n * n : 1 - Math.pow(-2 * n + 2, 3) / 2;
+    const lerp = (a, b, n) => a + (b - a) * n;
+    const duration = 36000;
+    let time = 0;
+    let previous = null;
+    let paused = reducedMotion.matches;
+    let frame = null;
+
+    function setOpacity(id, value) { el(id).style.opacity = value; }
+    function setScene(id, value) { el(id).classList.toggle('show', value); el(id).classList.toggle('hidden', !value); }
+
+    function drawRide(seconds) {
+      const p = ease(clamp(seconds / 10, 0, 1));
+      const x = lerp(-260, 350, p);
+      el('rideMotion').setAttribute('transform', `translate(${x} 0)`);
+      const spin = seconds * 250;
+      el('rideRear').setAttribute('transform', `rotate(${spin} 350 474)`);
+      el('rideFront').setAttribute('transform', `rotate(${spin} 650 474)`);
+      el('rideCaption').style.opacity = seconds < 8.7 ? '1' : '0';
+      status.textContent = seconds < 10 ? 'Episode 1 · ride to work' : 'Episode 1 · lighthouse ahead';
+    }
+
+    function drawOffice(seconds) {
+      const local = seconds - 12;
+      const arrival = clamp(local / 2, 0, 1);
+      el('officePelican').setAttribute('transform', `translate(${lerp(185, 140, ease(arrival))} 0)`);
+      setOpacity('officeBubble', local < 4 ? 1 : 0);
+      setOpacity('screenWelcome', local < 5 ? 1 : 0);
+      setOpacity('screenError', local >= 5 ? 1 : 0);
+      setOpacity('errorBubble', local >= 5 && local < 10 ? 1 : 0);
+      setOpacity('angryMarks', local >= 6 ? 1 : 0);
+      setOpacity('throwCaption', local >= 10 ? 1 : 0);
+      status.textContent = local < 5 ? 'Episode 2 · opens the office and turns on the computer' : local < 10 ? 'Episode 2 · ChatGPT is not responding' : 'Episode 3 · computer flies toward the window';
+
+      const throwing = local >= 10;
+      setOpacity('windowOpen', throwing ? 1 : 0);
+      setOpacity('flightTrail', throwing ? 1 : 0);
+      setOpacity('flyingComputer', throwing ? 1 : 0);
+      setOpacity('splash', local >= 12 ? 1 : 0);
+      // The throw uses a separate flying computer, leaving the desk monitor
+      // readable until the moment it disappears through the window.
+      el('officeComputer').style.opacity = 0;
+      el('monitor').style.opacity = throwing ? 0 : 1;
+      if (throwing) {
+        const launch = clamp((local - 10) / 2.5, 0, 1);
+        const q = ease(launch);
+        const fx = lerp(465, 805, q);
+        const fy = lerp(295, 164, q) - Math.sin(q * Math.PI) * 90;
+        el('flyingComputer').firstElementChild.setAttribute('transform', `translate(${fx} ${fy}) rotate(${lerp(0, 330, q)})`);
+        el('officePelican').setAttribute('transform', `translate(${115 - q * 25} ${-Math.sin(q * Math.PI) * 3}) rotate(${q * -4})`);
+      }
+    }
+
+    function render() {
+      const seconds = time / 1000;
+      const ride = seconds < 12;
+      const office = seconds >= 10 && seconds < 31;
+      const ending = seconds >= 31;
+      setScene('rideScene', ride);
+      setScene('officeScene', office);
+      setScene('endCard', ending);
+      if (ride) drawRide(seconds);
+      if (office) drawOffice(seconds);
+      if (ending) status.textContent = 'Finale · until the next episode';
+    }
+
+    function tick(now) {
+      frame = null;
+      if (paused || document.hidden) return;
+      if (previous !== null) time = (time + Math.min(now - previous, 80)) % duration;
+      previous = now;
+      render();
+      frame = requestAnimationFrame(tick);
+    }
+
+    function sync() {
+      if (frame !== null) cancelAnimationFrame(frame);
+      frame = null;
+      previous = null;
+      card.classList.toggle('paused', paused || document.hidden);
+      toggle.textContent = paused ? 'Resume' : 'Pause';
+      toggle.setAttribute('aria-pressed', String(paused));
+      if (!paused && !document.hidden) frame = requestAnimationFrame(tick);
+    }
+
+    toggle.addEventListener('click', () => { paused = !paused; sync(); });
+    replay.addEventListener('click', () => { time = 0; render(); paused = false; sync(); });
+    reducedMotion.addEventListener('change', event => { paused = event.matches; sync(); });
+    document.addEventListener('visibilitychange', sync);
+    render();
+    sync();
+  </script>
+<script id="pelican-preview-sizing">
+(() => {
+  if (window.parent === window) return;
+  document.documentElement.classList.add('pelican-embedded');
+  let pending = false;
+  let lastHeight = 0;
+  function measure() {
+    pending = false;
+    if (document.documentElement.clientWidth === 0) return;
+    const height = Math.ceil(document.body.getBoundingClientRect().height) + 2;
+    if (height > 0 && height !== lastHeight) {
+      lastHeight = height;
+      window.parent.postMessage({type: 'pelican-preview-height', height}, '*');
+    }
+  }
+  function schedule() {
+    if (!pending) { pending = true; requestAnimationFrame(measure); }
+  }
+  new ResizeObserver(schedule).observe(document.body);
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  window.addEventListener('message', event => {
+    if (event.source === window.parent && event.data?.type === 'pelican-preview-measure') {
+      lastHeight = 0;
+      schedule();
+    }
+  });
+  document.fonts.ready.then(schedule);
+  schedule();
+})();
+</script>
+</body>
+</html>

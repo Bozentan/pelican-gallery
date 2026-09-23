@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pelican on a Bicycle — v2</title>
+  <style>
+    :root{--ink:#263e49;--coral:#e86b57;--teal:#36a9a0;--gold:#f5bd4c;--paper:#fffdf7}
+    *{box-sizing:border-box} body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;background:#e7dfcf;color:var(--ink);font:15px/1.4 "Trebuchet MS",ui-rounded,system-ui,sans-serif}
+    .card{width:min(1120px,100%);overflow:hidden;border:1px solid #d7cdbd;border-radius:26px;background:rgba(255,253,247,.94);box-shadow:0 22px 55px #796d5838}
+    header{display:flex;justify-content:space-between;align-items:end;gap:18px;padding:24px 30px 16px}.eyebrow{margin:0 0 5px;color:var(--coral);font-size:.72rem;letter-spacing:.16em;font-weight:800;text-transform:uppercase}h1{margin:0;font-size:clamp(1.6rem,3vw,2.5rem);letter-spacing:-.04em;line-height:1}.sub{max-width:310px;margin:0;text-align:right;color:#65757a;font-size:.9rem}
+    .stage{padding:0 18px 18px}svg{display:block;width:100%;height:auto;border-radius:19px;background:#f7f2e8}.controls{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;padding:15px 26px 20px;border-top:1px solid #e1d8c9}.btn{border:0;border-radius:999px;padding:10px 16px;color:white;background:var(--ink);font:inherit;font-weight:700;cursor:pointer;box-shadow:0 4px 10px #263e4930}.btn.secondary{color:var(--ink);background:#f2ede3}.btn:hover{filter:brightness(1.06);transform:translateY(-1px)}.speed{display:flex;align-items:center;gap:9px;margin-left:auto;color:#637277;font-weight:700;font-size:.86rem}input{accent-color:var(--coral)}
+    .cloud{animation:drift calc(26s / var(--rate,1)) linear infinite}.cloud.slow{animation-duration:calc(36s / var(--rate,1));animation-delay:-11s}.bird{animation:bob calc(1.8s / var(--rate,1)) ease-in-out infinite}.wing{transform-box:fill-box;transform-origin:48% 70%;animation:flap calc(1.2s / var(--rate,1)) ease-in-out infinite}.leg{transform-box:fill-box;transform-origin:top center;animation:pedal calc(1.05s / var(--rate,1)) linear infinite}.leg.b{animation-delay:-.525s}.wheel-spin{transform-box:fill-box;transform-origin:center;animation:spin calc(1.05s / var(--rate,1)) linear infinite}.roadline{animation:road calc(1.7s / var(--rate,1)) linear infinite}.sun-glow{animation:pulse calc(3.8s / var(--rate,1)) ease-in-out infinite}.paused *{animation-play-state:paused!important}
+    @keyframes drift{from{transform:translateX(-120px)}to{transform:translateX(1120px)}}@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}@keyframes flap{0%,100%{transform:rotate(1deg)}50%{transform:rotate(-4deg)}}@keyframes pedal{from{transform:rotate(0)}to{transform:rotate(360deg)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes road{from{transform:translateX(0)}to{transform:translateX(-180px)}}@keyframes pulse{50%{opacity:.72;transform:scale(1.05)}}
+    @media(max-width:650px){header{display:block;padding:20px}.sub{text-align:left;margin-top:9px}.stage{padding:0 10px 10px}.controls{padding:14px 18px}.speed{margin-left:0;width:100%}input{flex:1}}
+  </style>
+<style id="pelican-preview-layout">
+html.pelican-embedded { min-height: 0 !important; height: auto !important; overflow: hidden; }
+.pelican-embedded body { min-height: 0 !important; height: auto !important; display: flow-root !important; width: 100%; box-sizing: border-box; overflow: hidden; }
+.pelican-embedded body > main, .pelican-embedded body > .card, .pelican-embedded .page { max-width: 100%; margin-left: auto; margin-right: auto; }
+.pelican-embedded :is(header, .title, .controls, nav, .transport, footer) { flex-wrap: wrap; }
+.pelican-embedded :is(header, .title, .controls, nav, .transport, footer) > * { min-width: 0; }
+.pelican-embedded :is(h1, .eyebrow) { overflow-wrap: anywhere; }
+.pelican-embedded input[type="range"] { max-width: 100%; }
+</style>
+
+</head>
+<body>
+  <main class="card">
+    <header><div><p class="eyebrow">seaside ride · v2</p><h1>Pelican on Two Wheels</h1></div><p class="sub">A graceful cyclist rides along the shore, catching the breeze with his oversized bill.</p></header>
+    <div class="stage">
+      <svg id="scene" viewBox="0 0 1100 640" role="img" aria-label="An animated pelican rides a turquoise bicycle along the sea">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fbf7ed"/><stop offset="1" stop-color="#f4e9d6"/></linearGradient>
+          <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d9eee9"/><stop offset="1" stop-color="#b6d9d3"/></linearGradient>
+          <linearGradient id="beak" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffd36b"/><stop offset="1" stop-color="#e9a936"/></linearGradient>
+          <linearGradient id="feather" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf8"/><stop offset="1" stop-color="#d9e2df"/></linearGradient>
+          <filter id="shadow"><feGaussianBlur stdDeviation="9"/></filter>
+        </defs>
+        <rect width="1100" height="640" fill="url(#sky)"/>
+        <g class="sun-glow"><circle cx="870" cy="116" r="62" fill="#f8d982" opacity=".48"/><circle cx="870" cy="116" r="43" fill="#ffe8a3"/></g>
+        <g class="cloud" fill="#fffdf8" opacity=".9"><path d="M108 174c14-30 44-32 57-12 24-24 64-10 67 21h32v15H96v-15z"/></g>
+        <g class="cloud slow" fill="#fffdf8" opacity=".82"><path d="M792 221c12-25 38-28 51-10 19-19 53-9 56 17h27v14H778v-14z"/></g>
+        <path d="M0 401 Q180 378 350 404 T700 402 T1100 405 V640H0Z" fill="url(#sea)"/>
+        <path d="M0 465 Q180 445 350 468 T700 464 T1100 470" fill="none" stroke="#9fcac4" stroke-width="4" opacity=".75"/>
+        <g fill="none" stroke="#b3d2cd" stroke-width="4" stroke-linecap="round" opacity=".8"><path d="M92 510h96"/><path d="M880 514h92"/><path d="M218 548h70"/><path d="M740 551h96"/></g>
+        <path d="M130 575 Q550 548 975 575" fill="none" stroke="#cdbfa8" stroke-width="8" opacity=".55" filter="url(#shadow)"/>
+        <g class="roadline" fill="none" stroke="#d3c4ac" stroke-width="3" stroke-linecap="round"><path d="M42 578h92"/><path d="M322 578h92"/><path d="M602 578h92"/><path d="M882 578h92"/></g>
+
+        <g transform="translate(0 4)">
+          <g id="bike" stroke="#244653" stroke-linecap="round" stroke-linejoin="round">
+            <g fill="none" stroke-width="8"><path d="M306 510L458 382l178 128-330 0 152-128 178 0" stroke="#35aaa3"/><path d="M458 382l31 128" stroke="#35aaa3"/><path d="M636 510l-31-137" stroke="#35aaa3"/><path d="M605 373h48" stroke="#244653"/></g>
+            <g class="wheel-spin"><circle cx="306" cy="510" r="91" fill="#f8f4e9" stroke="#29424c" stroke-width="9"/><g fill="none" stroke="#adc8c3" stroke-width="2"><path d="M306 419v182M215 510h182M242 446l128 128M242 574l128-128"/></g><circle cx="306" cy="510" r="12" fill="#f3bd4f" stroke="#29424c" stroke-width="5"/></g>
+            <g class="wheel-spin"><circle cx="636" cy="510" r="91" fill="#f8f4e9" stroke="#29424c" stroke-width="9"/><g fill="none" stroke="#adc8c3" stroke-width="2"><path d="M636 419v182M545 510h182M572 446l128 128M572 574l128-128"/></g><circle cx="636" cy="510" r="12" fill="#f3bd4f" stroke="#29424c" stroke-width="5"/></g>
+            <path d="M604 373l-12-29M592 344h34" fill="none" stroke-width="7"/><path d="M473 510l-20 18M473 510l27 8" fill="none" stroke-width="6"/><circle cx="473" cy="510" r="16" fill="#f8f4e9" stroke-width="5"/>
+          </g>
+
+          <g class="bird pelican">
+            <path d="M401 379c26-26 70-33 114-15 44 18 70 11 101 1 24-8 45 8 35 28-12 23-42 20-70 7-30-13-65 17-111 29-37 10-70-5-69-50z" fill="url(#feather)" stroke="#29424c" stroke-width="5"/>
+            <path d="M424 370c28 22 62 29 98 17 31-10 48-4 66 3-27 4-50 21-81 29-31 8-60-4-83-25z" fill="#c8d6d3" opacity=".7"/>
+            <g class="wing"><path d="M429 365c34 7 56 22 83 34-35 13-68 12-99-9-14-10-10-28 16-25z" fill="#f8faf5" stroke="#29424c" stroke-width="4"/><path d="M442 374c25 12 43 18 62 21" fill="none" stroke="#b8c9c5" stroke-width="3"/></g>
+            <path d="M508 354c12-21 15-57 14-91" fill="none" stroke="#29424c" stroke-width="13" stroke-linecap="round"/>
+            <path d="M509 354c13-22 17-57 16-91" fill="none" stroke="#f5f4ed" stroke-width="8" stroke-linecap="round"/>
+            <path d="M518 271c-23-16-30-48-20-78 11-32 36-48 67-43 27 4 45 21 52 46 8 30-1 55-21 72-18 15-53 16-78 3z" fill="url(#feather)" stroke="#29424c" stroke-width="5"/>
+            <path d="M535 153q-1-18 8-29M548 151q4-18 14-26" fill="none" stroke="#29424c" stroke-width="5" stroke-linecap="round"/>
+            <path d="M588 184c57 3 112 13 179 23 9 1 12 10 3 14l-21 5 12 8c-52 39-106 49-143 23-21-14-32-40-30-73z" fill="url(#beak)" stroke="#29424c" stroke-width="5"/>
+            <path d="M590 213c58 8 109 12 171 10M604 239c28 22 62 28 99 19" fill="none" stroke="#d99332" stroke-width="3" opacity=".8"/>
+            <circle cx="566" cy="185" r="12" fill="#f3bd4f" stroke="#29424c" stroke-width="4"/><circle cx="568" cy="185" r="5" fill="#29424c"/><circle cx="570" cy="181" r="2.5" fill="#fff"/>
+            <ellipse cx="549" cy="207" rx="10" ry="6" fill="#e8b69b" opacity=".45"/>
+            <path d="M514 267c14 8 37 9 58-1l-4 21c-22 10-45 8-58-2z" fill="#e76d58" stroke="#29424c" stroke-width="4"/><path d="M516 275l-25 7 20 10" fill="#e76d58" stroke="#29424c" stroke-width="4"/>
+            <g fill="none" stroke="#e9a63b" stroke-width="8"><path class="leg" d="M478 390l27 70"/><path class="leg b" d="M516 390l-29 73"/></g><g fill="none" stroke="#29424c" stroke-width="7"><path d="M505 460l-19 19 32 4"/><path d="M487 463l-14 20 30 1"/></g>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="controls"><button class="btn" id="toggle">Pause</button><button class="btn secondary" id="reset">Reset</button><label class="speed">Speed <input id="speed" type="range" min="0.5" max="2" step="0.1" value="1" /></label></div>
+  </main>
+  <script>
+    const scene=document.getElementById('scene'), toggle=document.getElementById('toggle'), reset=document.getElementById('reset'), speed=document.getElementById('speed');
+    let paused=false;
+    toggle.addEventListener('click',()=>{paused=!paused;scene.classList.toggle('paused',paused);toggle.textContent=paused?'Resume':'Pause';});
+    speed.addEventListener('input',()=>scene.style.setProperty('--rate',speed.value));
+    reset.addEventListener('click',()=>{paused=false;scene.classList.remove('paused');toggle.textContent='Pause';speed.value='1';scene.style.removeProperty('--rate');});
+  </script>
+<script id="pelican-preview-sizing">
+(() => {
+  if (window.parent === window) return;
+  document.documentElement.classList.add('pelican-embedded');
+  let pending = false;
+  let lastHeight = 0;
+  function measure() {
+    pending = false;
+    if (document.documentElement.clientWidth === 0) return;
+    const height = Math.ceil(document.body.getBoundingClientRect().height) + 2;
+    if (height > 0 && height !== lastHeight) {
+      lastHeight = height;
+      window.parent.postMessage({type: 'pelican-preview-height', height}, '*');
+    }
+  }
+  function schedule() {
+    if (!pending) { pending = true; requestAnimationFrame(measure); }
+  }
+  new ResizeObserver(schedule).observe(document.body);
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  window.addEventListener('message', event => {
+    if (event.source === window.parent && event.data?.type === 'pelican-preview-measure') {
+      lastHeight = 0;
+      schedule();
+    }
+  });
+  document.fonts.ready.then(schedule);
+  schedule();
+})();
+</script>
+</body>
+</html>

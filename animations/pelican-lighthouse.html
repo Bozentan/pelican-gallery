@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4eddf">
+<title>Pelican Offline — A Little Story by the Sea</title>
+<style>
+  :root{color-scheme:light;--paper:#f4eddf;--ink:#263f48;--muted:#697c7c;--orange:#cc664b;--line:#d8d3c5;--sea:#347b80}
+  *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Segoe UI",Arial,sans-serif;background-image:radial-gradient(ellipse at 80% 0%,#fbf8ee 0,transparent 65%)}
+  button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid var(--orange);outline-offset:5px}
+  .page{max-width:1312px;margin:auto;padding:38px 40px 25px}.masthead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:23px}.eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;margin:0 0 9px;color:var(--sea)}h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(30px,4.4vw,54px);font-weight:400;line-height:1.06;letter-spacing:-2px;margin:0}h1 em{color:var(--orange);font-weight:400}.description{font-size:13px;line-height:1.7;text-align:right;max-width:260px;margin:0 0 2px;color:var(--muted)}
+  .cinema{border-radius:16px;overflow:hidden;position:relative;background:#c6dfd9;box-shadow:0 18px 38px -27px #263f4860;border:1px solid #263f4820}.film{display:block;width:100%;height:auto;aspect-ratio:16/9}.film text{font-family:"Segoe UI",Arial,sans-serif}.film .serif{font-family:Georgia,"Times New Roman",serif}.film .outline{stroke:#29434a;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.film .fine{stroke:#29434a;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.film .nostroke{stroke:none}.scene-label{position:absolute;left:24px;top:22px;font-size:11px;font-weight:700;letter-spacing:2px;background:#fff7e4e6;border:1px solid #29434a24;padding:10px 13px;border-radius:5px}.live-dot{display:inline-block;width:6px;height:6px;background:var(--orange);border-radius:50%;margin-right:7px;vertical-align:1px}
+  .transport{display:flex;gap:17px;align-items:center;margin-top:21px}.button{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:50%;width:42px;height:42px;display:grid;place-items:center;flex:0 0 auto}.button:hover{background:#e6e5d9}.button.primary{background:var(--ink);color:var(--paper);border-color:var(--ink);width:46px;height:46px}.button svg{width:17px;height:17px;fill:currentColor}.button[aria-pressed="true"]{background:#dbe7dd;border-color:#98b9ac}.scrubber{display:flex;align-items:center;gap:14px;flex:1;min-width:0}.time{font-size:12px;letter-spacing:.6px;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--muted)}input[type=range]{accent-color:var(--orange);width:100%;height:25px;cursor:pointer;margin:0;min-width:20px}.chapters{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:25px}.chapter{border:0;border-top:2px solid var(--line);padding:12px 0 4px;background:transparent;text-align:left;color:var(--muted);line-height:1.5}.chapter .number{font-size:10px;letter-spacing:2px;display:block;margin-bottom:2px}.chapter .name{font-size:13px}.chapter.active{border-color:var(--orange);color:var(--ink)}.chapter:hover{color:var(--orange)}.footer{display:flex;justify-content:space-between;gap:16px;margin-top:27px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:11px;letter-spacing:.3px}.footer span:last-child{text-align:right}.sr-only{position:absolute;clip:rect(0,0,0,0);width:1px;height:1px;overflow:hidden;white-space:nowrap}
+  @media(max-width:650px){.page{padding:24px 15px 20px}.masthead{margin-bottom:18px}.description{display:none}.eyebrow{font-size:9px;letter-spacing:2px}h1{letter-spacing:-1px}.cinema{border-radius:9px}.scene-label{top:10px;left:10px;font-size:8px;padding:6px 8px;letter-spacing:1px}.transport{gap:9px;margin-top:14px}.scrubber{gap:6px}.button{width:36px;height:36px}.button.primary{width:40px;height:40px}.time{font-size:10px}.chapters{gap:7px;margin-top:16px}.chapter .name{font-size:10px}.chapter .number{font-size:9px}.footer{font-size:10px;line-height:1.6;margin-top:18px}}
+</style>
+<style id="pelican-preview-layout">
+.chapters { display: none !important; }
+html.pelican-embedded { min-height: 0 !important; height: auto !important; overflow: hidden; }
+.pelican-embedded body { min-height: 0 !important; height: auto !important; display: flow-root !important; width: 100%; box-sizing: border-box; overflow: hidden; }
+.pelican-embedded body > main, .pelican-embedded body > .card, .pelican-embedded .page { max-width: 100%; margin-left: auto; margin-right: auto; }
+.pelican-embedded :is(header, .title, .controls, nav, .transport, footer) { flex-wrap: wrap; }
+.pelican-embedded :is(header, .title, .controls, nav, .transport, footer) > * { min-width: 0; }
+.pelican-embedded :is(h1, .eyebrow) { overflow-wrap: anywhere; }
+.pelican-embedded input[type="range"] { max-width: 100%; }
+</style>
+
+</head>
+<body>
+<main class="page">
+  <header class="masthead">
+    <div><p class="eyebrow">COASTAL STORIES · EPISODE 01</p><h1>Pelican <em>Offline.</em></h1></div>
+    <p class="description">A very ordinary Monday<br>for a lighthouse keeper.</p>
+  </header>
+  <section class="cinema" aria-label="A cartoon about a pelican lighthouse keeper">
+  <svg id="film" class="film" viewBox="0 0 1440 810" role="img" aria-labelledby="film-title film-desc" xmlns="http://www.w3.org/2000/svg">
+  <title id="film-title">Pelican Offline</title>
+  <desc id="film-desc">A pelican rides a bicycle to work at the lighthouse. He turns on the computer, discovers that ChatGPT is not working, gets angry, and throws the computer through an open window. The computer lands in an empty boat. The pelican turns on the lighthouse light.</desc>
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#c5e1dc"/><stop offset="1" stop-color="#eff0d8"/></linearGradient>
+    <linearGradient id="evening" x2="0" y2="1"><stop stop-color="#aacbd0"/><stop offset="1" stop-color="#f9d8a2"/></linearGradient>
+    <linearGradient id="sea" x2="0" y2="1"><stop stop-color="#83b9b5"/><stop offset="1" stop-color="#477f88"/></linearGradient>
+    <linearGradient id="wall" x2="1" y2=".8"><stop stop-color="#f4e9d1"/><stop offset="1" stop-color="#dfcba6"/></linearGradient>
+    <radialGradient id="lamp"><stop stop-color="#ffedaf" stop-opacity=".85"/><stop offset="1" stop-color="#ffedaf" stop-opacity="0"/></radialGradient>
+    <pattern id="planks" width="180" height="72" patternUnits="userSpaceOnUse"><rect width="180" height="72" fill="#b99a77"/><path d="M0 71H180M1 0V72M36 21h63m27 25h41" stroke="#987f65" stroke-width="2" fill="none"/></pattern>
+    <pattern id="wall-lines" width="150" height="95" patternUnits="userSpaceOnUse"><path d="M18 65h42m21-50h33M130 64h12" stroke="#c7b898" stroke-width="2" opacity=".4"/></pattern>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" stitchTiles="stitch" seed="24"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".055"/></feComponentTransfer></filter>
+    <clipPath id="tower-clip"><path d="M-114 0L-73-424H73L114 0Z"/></clipPath>
+    <clipPath id="office-window-clip"><path d="M1040 470V230A122 122 0 0 1 1284 230V470Z"/></clipPath>
+    <g id="cloud" fill="#fff8e7" opacity=".84"><path d="M-92 19C-112-6-78-34-50-21C-35-72 45-65 54-21C91-38 125-8 112 18Z"/><path d="M-47 23H77" stroke="#fff8e7" stroke-width="10" stroke-linecap="round"/></g>
+    <g id="gull" fill="none" stroke="#406871" stroke-width="4" stroke-linecap="round"><path d="M-20 5Q-10-9 0 0Q10-9 20 5"/></g>
+    <g id="grass" stroke="#698773" stroke-width="4" fill="none" stroke-linecap="round"><path d="M0 0Q-3-28-15-39M0 0Q9-34 14-42M0 0Q20-20 28-21M0 0L-23-18"/></g>
+    <g id="wheel" class="outline"><circle r="51" fill="#293f49"/><circle r="43" fill="#f4e6c6" stroke="#b9c9bd" stroke-width="3"/><g stroke="#557277" stroke-width="2"><path d="M0-40V40M-40 0H40M-28-28L28 28M-28 28L28-28"/></g><circle r="7" fill="#d0a264" stroke-width="3"/></g>
+    <g id="bicycle" class="outline">
+      <path d="M-121 6H-68" fill="none" stroke-width="7"/><path d="M-100 10L-92 68" fill="none" stroke-width="3"/>
+      <g id="back-wheel" transform="translate(-92 68)"><use href="#wheel"/></g><g id="front-wheel" transform="translate(101 68)"><use href="#wheel"/></g>
+      <path d="M-92 68L-39-8L-3 68Z M-39-8H60L-3 68M60-8L101 68" fill="none" stroke="#e7ab43" stroke-width="10"/>
+      <path d="M-42-8L-48-26M60-8L47-51L73-64H86" fill="none" stroke-width="7"/>
+      <path d="M-68-27H-31" stroke="#874f3d" stroke-width="11"/>
+      <path d="M80-65h13" stroke="#29434a" stroke-width="9"/>
+      <circle cx="62" cy="-56" r="8" fill="#f5d788" stroke-width="3"/>
+      <circle cx="-3" cy="68" r="17" fill="#f5d788" stroke-width="3"/>
+      <path d="M-93 69Q-84 52-3 51Q16 52 15 69Q14 86-3 85L-90 79Z" fill="none" stroke="#708078" stroke-width="3"/>
+      <path d="M-141 38Q-125-7-89 6M65 30Q102-3 134 32" fill="none" stroke="#c76c51" stroke-width="5"/>
+      <path d="M-101 9L-82-25H-129L-141 9Z" fill="#8b694e" stroke-width="3"/><path d="M-128-18H-88M-135-3H-84" stroke="#cda879" stroke-width="3"/>
+    </g>
+    <g id="pelican-body" class="outline">
+      <path d="M-66-32L-113-62L-94-15L-70 0" fill="#e4ded0"/>
+      <path d="M-55-99C-83-82-94-32-70 10C-53 41-8 40 18 20C44 0 36-36 28-58L36-114C73-111 80-156 55-175C22-199-13-172-6-143L-13-92C-29-107-43-105-55-99Z" fill="#fff4da"/>
+      <path d="M-56-17Q-23 8 12-13" fill="none" stroke="#d7cdb5" stroke-width="3"/>
+      <path d="M56-144L179-133Q135-91 95-88Q66-89 60-115Z" fill="#efb04c"/>
+      <path d="M52-153Q111-152 184-132L61-128Z" fill="#f3c25c"/>
+      <path d="M85-126Q105-108 139-117" fill="none" stroke="#cc863e" stroke-width="2.5"/>
+      <circle cx="38" cy="-158" r="14" fill="#fffdfa" stroke-width="2.5"/><ellipse cx="43" cy="-157" rx="4.5" ry="6.5" fill="#263f48" stroke="none"/><circle cx="45" cy="-160" r="1.7" fill="#fffdfa" stroke="none"/>
+      <path d="M3-174Q12-203 44-195Q65-194 72-175Z" fill="#335e70"/><path d="M-2-174H75Q70-162 35-171" fill="#29444f" stroke-width="3"/>
+      <path d="M29-187h11m-5-5v10" stroke="#ecc878" stroke-width="2.5"/>
+      <path d="M-6-112Q9-102 36-114L40-100Q18-89-9-101Z" fill="#cc694f" stroke-width="3"/>
+      <path d="M-5-103L-57-115L-47-94L-65-80L-11-89Z" fill="#d17757" stroke-width="3"/>
+      <path d="M-40-88Q-8-52 0 26" fill="none" stroke="#427978" stroke-width="8"/>
+      <rect x="-75" y="-26" width="48" height="44" rx="9" fill="#488782" stroke-width="3" transform="rotate(-9 -50 0)"/><path d="M-78-16L-54-1L-30-20" fill="#60958a" stroke-width="3"/><circle cx="-53" cy="-3" r="3" fill="#eec575" stroke="none"/>
+    </g>
+    <g id="standing-legs" class="outline"><path d="M-29 22L-34 77M6 22L13 77" fill="none" stroke="#d99b43" stroke-width="10"/><path d="M-35 73L-51 88H-6Q-8 78-35 73Z M13 73L-3 88H42Q39 78 13 73Z" fill="#edb452" stroke-width="3"/></g>
+    <g id="rest-wing" class="outline"><path d="M-42-79Q-66-46-23-13Q-3-11 17-42Q-11-35-12-58" fill="#e8e1cb"/><path d="M-34-44L-15-27M-26-50L-6-35" fill="none" stroke="#b9b7a3" stroke-width="2.5"/></g>
+    <g id="lighthouse" class="outline">
+      <ellipse cx="0" cy="4" rx="162" ry="21" fill="#496e6540" stroke="none"/>
+      <path d="M-114 0L-73-424H73L114 0Z" fill="#f6edd3"/>
+      <g clip-path="url(#tower-clip)" stroke="none"><path d="M-120-337H120V-257H-120Z M-120-166H120V-86H-120Z" fill="#cc7159"/><path d="M58-424H100L140 0H76Z" fill="#29434a15"/></g>
+      <path d="M-38 0V-75A38 38 0 0 1 38 -75V0Z" fill="#3b6669"/><path d="M-26-4V-71Q0-102 26-71V-4M0-92V-3" fill="none" stroke="#294b56" stroke-width="3"/><circle cx="20" cy="-38" r="4" fill="#e8bb68" stroke="none"/>
+      <rect x="-30" y="-320" width="60" height="86" rx="29" fill="#294a56"/><path d="M-22-273H22M0-311V-242" stroke="#dfcda8" stroke-width="5"/><path d="M-37-231H37" stroke-width="8"/>
+      <path d="M-121 0H121L132 13H-132Z" fill="#d9c8a6"/>
+      <path d="M-87-423H87V-439H-87Z" fill="#294b56"/>
+      <path d="M-68-440V-515H68V-440Z" fill="#b3cfbf"/><path d="M-48-442V-510M0-442V-510M48-442V-510" stroke-width="5"/><path d="M-81-517L0-564L81-517Z" fill="#c56951"/>
+      <path d="M-99-437V-475M99-437V-475M-99-466H99" fill="none" stroke-width="4"/>
+      <path d="M0-565V-584M-8-584H8" stroke-width="3"/><circle cx="0" cy="-478" r="17" fill="#f9db85" stroke-width="3"/>
+      <path d="M-71-210h18m89 27h28M-86-58h21m-2-298h13M41-365h15" fill="none" stroke="#9b8e76" stroke-width="2"/>
+      <rect x="-76" y="-123" width="152" height="30" rx="4" fill="#f2dfaf" stroke-width="2"/><text x="0" y="-103" text-anchor="middle" fill="#29434a" stroke="none" font-size="15" font-weight="700" letter-spacing="3">LIGHTHOUSE #04</text>
+    </g>
+    <g id="computer-shell" class="outline"><rect x="-123" y="-105" width="246" height="169" rx="12" fill="#364c56"/><rect x="-109" y="-92" width="218" height="139" rx="5" fill="#162f3b" stroke="#102d36" stroke-width="2"/><path d="M-17 65L-22 91H22L17 65" fill="#687b7b"/><path d="M-48 94Q-48 84-25 85H25Q48 84 48 94Z" fill="#364c56" stroke-width="3"/><circle cx="101" cy="55" r="3" fill="#8cd4aa" stroke="none"/></g>
+    <g id="tiny-pc"><use href="#computer-shell"/><rect x="-109" y="-92" width="218" height="139" rx="5" fill="#f6e7ce"/><path d="M-19-38L19 0M19-38L-19 0" stroke="#c56b53" stroke-width="9" stroke-linecap="round"/><text x="0" y="30" font-size="16" fill="#973f31" text-anchor="middle">OFFLINE</text></g>
+    <g id="boat" class="outline"><path d="M-155-27Q-120 39 99 24L151-27Z" fill="#bc7555"/><path d="M-151-27Q-22-6 151-27Q-5-47-151-27Z" fill="#566c69"/><path d="M-119-1Q-14 26 111 2" fill="none" stroke="#e5b885" stroke-width="4"/><path d="M-52-35L-39-15M57-35L67-16" stroke="#d2a078" stroke-width="12"/><text x="-3" y="17" fill="#f2d7ab" text-anchor="middle" font-size="18" font-weight="600" stroke="none" letter-spacing="3">SEAGULL</text></g>
+  </defs>
+
+  <!-- Scene one: a continuous bicycle ride along a hand-drawn coastline. -->
+  <g id="coast-scene">
+    <rect width="1440" height="810" fill="url(#sky)"/>
+    <circle cx="1100" cy="157" r="71" fill="#ffedba"/><circle cx="1100" cy="157" r="94" fill="#ffedba" opacity=".17"/>
+    <g id="coast-clouds"><use href="#cloud" transform="translate(262 137) scale(1.3)"/><use href="#cloud" transform="translate(715 206) scale(.75)"/><use href="#cloud" transform="translate(1298 272) scale(1.1)"/></g>
+    <path d="M0 410Q140 369 271 418Q400 350 575 411Q746 376 949 406Q1230 337 1440 394V570H0Z" fill="#93b9af"/>
+    <path d="M0 440Q277 456 481 434Q854 412 1440 444V675H0Z" fill="url(#sea)"/>
+    <g id="coast-waves" fill="none" stroke="#daece0" stroke-width="3" stroke-linecap="round" opacity=".7"><path d="M40 482h72m148 0h145m140-10h67m190 9h103m240-11h72M-14 535h130m122-16h59m136 31h127m78-32h61m142 27h177m115-22h181M77 589h111m87-11h81m247 23h63m68-40h99m174 40h91m160-29h185"/></g>
+    <g id="distant-boat" transform="translate(785 435)" class="fine"><path d="M-40 0H44L22 20H-20Z" fill="#cb795c"/><path d="M0-82V-3H-36Z" fill="#fff4d8"/><path d="M7-68V-4H42Z" fill="#ecd4a2"/></g>
+    <g id="coast-birds"><use href="#gull" transform="translate(812 121)"/><use href="#gull" transform="translate(862 148) scale(.7)"/><use href="#gull" transform="translate(570 278) scale(.6)"/></g>
+    <g id="coast-camera">
+      <path d="M-200 641Q184 500 501 617Q771 690 1068 594Q1395 500 1679 606Q1974 511 2192 558Q2400 597 2700 543V810H-200Z" fill="#9aa77e"/>
+      <path d="M-200 689Q270 628 560 695Q830 740 1230 665Q1659 595 1960 662Q2290 665 2700 634V810H-200Z" fill="#e4cea4"/>
+      <path d="M-200 727Q195 665 555 738T1210 720Q1640 645 2040 718T2700 710" fill="none" stroke="#f4e1b9" stroke-width="68"/>
+      <path d="M-200 727Q195 665 555 738T1210 720Q1640 645 2040 718T2700 710" fill="none" stroke="#c7ae85" stroke-width="2" stroke-dasharray="12 52"/>
+      <g fill="#718777"><path d="M113 620q-12-25 8-28q19 4 15 20Z M660 633q-20-37 4-40q20 13 22 38Z M1643 610q-9-32 16-35q23 11 20 32Z"/></g>
+      <use href="#grass" transform="translate(125 671) scale(1.2)"/><use href="#grass" transform="translate(687 690) scale(.7)"/><use href="#grass" transform="translate(1150 640)"/><use href="#grass" transform="translate(1700 663) scale(.7)"/><use href="#grass" transform="translate(2140 664)"/>
+      <g transform="translate(1518 573)" class="outline"><path d="M0 0V96" stroke="#786b50" stroke-width="10"/><path d="M-75-8H42L64 13L42 34H-75Z" fill="#e9d4a3" stroke-width="3"/><text x="-11" y="20" text-anchor="middle" stroke="none" font-size="20" fill="#29434a" font-weight="600">LIGHTHOUSE →</text></g>
+      <path d="M1860 683Q1963 626 2052 635" fill="none" stroke="#d3bd92" stroke-width="38"/>
+      <use href="#lighthouse" transform="translate(2020 650)"/>
+      <g transform="translate(2202 595)" class="outline"><path d="M-7 36L0-47M-4-46Q30-76 55-44Q25-15-4-46Z" fill="#c27453"/><path d="M0-44Q18-52 35-40" fill="none" stroke="#efcc8d" stroke-width="3"/></g>
+      <g id="parked-bike" transform="translate(1838 587)" opacity="0"><use href="#bicycle"/></g>
+      <ellipse id="rider-shadow" cx="400" cy="707" rx="156" ry="14" fill="#867858" opacity=".2"/>
+      <g id="rider">
+        <use href="#bicycle"/>
+        <g id="rider-spokes" stroke="#f5dec0" stroke-width="2.5" opacity=".9"><path id="spoke-left" d="M-131 68H-53M-92 29V107"/><path id="spoke-right" d="M62 68H140M101 29V107"/></g>
+        <path id="far-leg" d="M-13 14L19 48L-3 83" fill="none" stroke="#c18840" stroke-width="9" stroke-linecap="round"/>
+        <use href="#pelican-body" transform="translate(-17 -38)"/>
+        <path id="near-leg" d="M-37-10L-51 26L-3 61" fill="none" stroke="#e5a745" stroke-width="11" stroke-linecap="round"/>
+        <path id="pedal-foot" d="M-10 64L19 65" stroke="#edb550" stroke-width="11" stroke-linecap="round"/>
+        <path id="crank" d="M-3 68L18 68" stroke="#29434a" stroke-width="4" stroke-linecap="round"/>
+        <path d="M-56-109Q-19-91 23-89L74-65Q84-62 85-72Q44-109-21-129" fill="#e8e1cb" class="outline"/>
+        <path d="M-26-107L-10-94M-16-113L0-98" stroke="#b9b7a3" fill="none" stroke-width="2.5"/>
+      </g>
+      <g id="arrival-pelican" opacity="0"><use href="#standing-legs"/><use href="#pelican-body"/><use href="#rest-wing"/></g>
+      <g id="morning-notes" fill="#375d62" font-size="34" font-family="Georgia"><text x="0" y="0">♪</text><text x="39" y="-29" font-size="24">♫</text></g>
+      <g fill="#d2be95"><ellipse cx="465" cy="785" rx="27" ry="6"/><ellipse cx="912" cy="767" rx="17" ry="5"/><ellipse cx="1465" cy="784" rx="25" ry="7"/><ellipse cx="2244" cy="769" rx="25" ry="6"/></g>
+      <use href="#grass" transform="translate(53 809) scale(1.6)"/><use href="#grass" transform="translate(786 824) scale(1.6)"/><use href="#grass" transform="translate(1726 810) scale(1.3)"/><use href="#grass" transform="translate(2311 814) scale(1.7)"/>
+    </g>
+    <g id="opening-card" transform="translate(0 -66)"><text x="100" y="275" class="serif" font-size="61" fill="#2e535b">A good day</text><text x="103" y="337" class="serif" font-size="61" font-style="italic" fill="#b35b45">for work.</text><path d="M103 365Q243 356 372 365" stroke="#b35b45" stroke-width="3" fill="none"/><text x="104" y="401" font-size="17" fill="#4e7476" letter-spacing="4">MONDAY, 08:59</text></g>
+  </g>
+
+  <!-- Scene two: inside the lighthouse keeper's office. -->
+  <g id="office-scene" style="display:none">
+    <g id="office-shake">
+      <rect width="1440" height="810" fill="url(#wall)"/><rect width="1440" height="616" fill="url(#wall-lines)"/>
+      <path d="M0 0L175 0Q59 280 94 616H0Z" fill="#d0b994" opacity=".55"/><path d="M1440 0H1360Q1430 258 1360 616H1440Z" fill="#bfa581" opacity=".35"/>
+      <path d="M0 617H1440V810H0Z" fill="url(#planks)"/><path d="M0 613H1440" stroke="#806e58" stroke-width="12"/>
+      <path d="M0 687H1440M0 759H1440M220 617L132 810M625 617L602 810M1028 617L1090 810" stroke="#9d8367" stroke-width="2" opacity=".55"/>
+      <path d="M1120 475L1440 704V810H800L1040 475Z" fill="#f5dfad" opacity=".18"/>
+      <g class="outline" transform="translate(178 130)"><path d="M0 0H150V172H0Z" fill="#82664e"/><path d="M11 11H139V159H11Z" fill="#e7dfbf" stroke-width="2"/><path d="M20 94Q46 69 58 89T93 83T130 76M20 119Q45 99 74 113T130 98" fill="none" stroke="#69938d" stroke-width="3"/><path d="M70 75L79 33L90 75Z" fill="#ca7757" stroke-width="2"/><text x="75" y="144" text-anchor="middle" fill="#446568" stroke="none" font-size="15" letter-spacing="2">STAY ON COURSE</text></g>
+      <g transform="translate(465 159)" class="outline"><circle r="48" fill="#f8ecd1" stroke="#8d7357" stroke-width="7"/><path d="M0-39v6M39 0h-6M0 39v-6M-39 0h6" stroke-width="3"/><path d="M0 0V-28M0 0H24" stroke-width="4"/><circle r="4" fill="#bf684d" stroke="none"/></g>
+      <g class="outline"><path d="M129 388H363V402H129Z" fill="#93765a"/><path d="M151 402v30M336 402v30" stroke-width="7"/><path d="M159 387V343H183V387M189 387V329H212V387M217 387V340H244V387" fill="#517e78" stroke-width="3"/><path d="M166 354h10m20-13h8m20 14h12" stroke="#d4c29a" stroke-width="2"/><path d="M293 387L275 344H337L320 387Z" fill="#be7555" stroke-width="3"/><path d="M305 344Q287 304 273 311Q268 337 305 341Q335 300 336 316Q344 334 305 341M305 339V300" fill="#668d70" stroke-width="3"/></g>
+      <g class="outline"><path d="M1040 470V230A122 122 0 0 1 1284 230V470Z" fill="#acd3cd" stroke="#9f8262" stroke-width="20"/>
+        <g clip-path="url(#office-window-clip)" stroke="none"><rect x="1025" y="108" width="275" height="366" fill="url(#sky)"/><circle cx="1239" cy="204" r="38" fill="#ffebaf"/><path d="M1020 329Q1140 312 1300 335V485H1020Z" fill="#8bb8b3"/><path d="M1060 370h51m42 18h74m-156 37h90m47-70h51" fill="none" stroke="#e0eee1" stroke-width="3"/><use href="#gull" transform="translate(1153 262) scale(.7)"/></g>
+        <path d="M1035 471V188L981 227V496Z" fill="#d8ccac" stroke-width="5"/><path d="M1023 457V217L991 240V473Z" fill="#9fbdb2" stroke-width="3"/><path d="M997 340L1024 323" stroke="#d8ccac" stroke-width="7"/><path d="M1288 471V188L1330 225V489Z" fill="#d6c6a3" stroke-width="5"/><path d="M1299 452V221L1319 238V467Z" fill="#a5c3b8" stroke-width="3"/>
+        <path d="M1017 478H1310" stroke="#8b765b" stroke-width="15"/>
+      </g>
+      <path d="M759 0V112" stroke="#526462" stroke-width="5"/><path d="M702 151Q705 110 759 105Q811 111 817 151Z" fill="#3d7776" stroke="#29434a" stroke-width="4"/><ellipse cx="759" cy="152" rx="57" ry="9" fill="#f2d394"/>
+      <g id="desk-lamp-glow" opacity="0"><ellipse cx="759" cy="374" rx="218" ry="245" fill="url(#lamp)"/></g>
+      <g class="outline"><path d="M409 548H560V571H409Z" fill="#9b7557"/><path d="M430 574L419 680M541 574L554 680" fill="none" stroke-width="10"/><path d="M426 540L411 420Q463 401 519 420L535 540" fill="#407974" stroke-width="6"/><path d="M437 431L449 514M465 428L478 514M493 432L507 515" stroke="#6a9383" stroke-width="4"/></g>
+      <ellipse id="office-shadow" cx="537" cy="639" rx="99" ry="16" fill="#635d48" opacity=".17"/>
+      <g id="office-pelican">
+        <g id="office-legs"><use href="#standing-legs"/></g><use href="#pelican-body"/>
+        <path id="office-wing" d="M-42-79Q-66-46-23-13Q-3-11 17-42Q-11-35-12-58" fill="#e8e1cb" class="outline"/>
+        <g id="angry-face" opacity="0"><path d="M23-176L53-164" stroke="#29434a" stroke-width="6" stroke-linecap="round"/><ellipse cx="16" cy="-141" rx="13" ry="7" fill="#d67558" opacity=".65"/><path d="M57-128L93-129" stroke="#a76837" stroke-width="3"/></g>
+        <g id="steam" fill="none" stroke="#fff7e5" stroke-width="8" stroke-linecap="round"><path id="steam-left" d="M-5-201Q-24-216-12-230Q2-240-8-253"/><path id="steam-right" d="M63-200Q82-215 70-230Q59-240 70-253"/></g>
+      </g>
+      <g class="outline"><path d="M643 555L626 714M1005 555L1024 714" stroke="#735c47" stroke-width="21"/><path d="M670 557H986V613H670Z" fill="#b08a60"/><path d="M682 567H974V601H682Z" fill="#c39e72" stroke-width="2"/><path d="M810 582H844" stroke="#785f48" stroke-width="5"/><path d="M621 533H1031V558H621Z" fill="#d0ad7f"/><path d="M637 541H1015" stroke="#e4c193" stroke-width="3"/></g>
+      <g id="desk-accessories" class="fine"><path d="M681 517H806L818 532H672Z" fill="#e6decb"/><path d="M689 522H798M684 527H805M708 518L705 529M730 518L729 529M752 518V529M777 518L779 529" stroke="#9aab9e" stroke-width="2"/><ellipse cx="645" cy="526" rx="15" ry="8" fill="#eee4cc"/><path d="M645 520V524"/><path d="M959 496H993V531H963Z" fill="#f0ce82"/><path d="M993 502Q1014 500 1012 514Q1012 527 993 522" fill="none" stroke-width="5"/><path d="M974 488Q964 479 976 469" fill="none" stroke="#fff5df" stroke-width="3"/><text x="977" y="520" text-anchor="middle" fill="#805d43" stroke="none" font-size="17">⚓</text></g>
+      <g id="office-computer">
+        <use href="#computer-shell"/>
+        <g id="screen-boot" style="display:none"><rect x="-109" y="-92" width="218" height="139" rx="5" fill="#e5eee1"/><text x="0" y="-62" text-anchor="middle" font-size="18" fill="#356c66" font-weight="600">ChatGPT</text><g id="loading-spinner" fill="none" stroke="#60968a" stroke-width="5"><circle cx="0" cy="-24" r="17" opacity=".25"/><path d="M0-41A17 17 0 0 1 17-24" stroke-linecap="round"/></g><text x="0" y="16" text-anchor="middle" font-size="12" fill="#51756d">Connecting…</text><rect x="-63" y="29" width="126" height="4" rx="2" fill="#bed1c3"/><rect id="boot-progress" x="-63" y="29" width="0" height="4" rx="2" fill="#629888"/></g>
+        <g id="screen-error" style="display:none"><rect x="-109" y="-92" width="218" height="139" rx="5" fill="#f8e6d5"/><text x="0" y="-65" text-anchor="middle" font-size="18" fill="#38535a" font-weight="600">ChatGPT</text><circle cx="0" cy="-29" r="20" fill="#c66751"/><path d="M-7-36L7-22M7-36L-7-22" stroke="#fff4df" stroke-width="4" stroke-linecap="round"/><text x="0" y="9" text-anchor="middle" font-size="20" fill="#a64e3b" font-weight="700">Not working</text><text x="0" y="31" text-anchor="middle" font-size="12" fill="#916a59">Please try again later.</text></g>
+      </g>
+      <g id="office-bubble" opacity="0"><path d="M411 156Q400 140 376 140H182Q164 141 164 161V217Q164 239 185 239H346L385 271L377 239Q410 239 411 217Z" fill="#fff9e8" stroke="#29434a" stroke-width="3"/><text id="bubble-text" x="287" y="184" text-anchor="middle" fill="#29434a" font-size="24" font-weight="600">Well, let’s work!</text><text id="bubble-second" x="287" y="216" text-anchor="middle" fill="#9a5945" font-size="17">Coffee. Sea. ChatGPT.</text></g>
+      <g id="rage-marks" opacity="0" stroke="#bc563f" stroke-width="6" stroke-linecap="round" fill="none"><path d="M687 222L705 199M707 244L740 233M666 201L669 174"/><path d="M490 264l-19-22M473 287l-30-9"/></g>
+      <g id="whoosh" opacity="0" stroke="#fff7e1" stroke-linecap="round" fill="none"><path d="M884 335Q997 262 1110 291" stroke-width="10"/><path d="M914 365Q1003 302 1085 320" stroke-width="6"/><path d="M926 271Q1001 226 1067 246" stroke-width="4"/></g>
+    </g>
+  </g>
+
+  <!-- Scene three: the inevitable technical support escalation. -->
+  <g id="outro-scene" style="display:none">
+    <rect width="1440" height="810" fill="url(#evening)"/>
+    <circle cx="1167" cy="240" r="89" fill="#f9dfa5"/><use href="#cloud" transform="translate(245 135) scale(1.5)"/><use href="#cloud" transform="translate(940 103) scale(.8)"/>
+    <path d="M0 426Q198 388 362 424Q501 385 783 419Q1055 387 1440 413V810H0Z" fill="url(#sea)"/>
+    <g id="outro-waves" stroke="#d5e8d7" stroke-width="3" fill="none" opacity=".75"><path d="M0 476h129m82 28h132m-239 44h167m-255 89h102m899-170h99m92 38h184m-153 52h169m-290 42h145m-8 63h128m-985-11h73"/></g>
+    <path d="M318 731Q490 600 733 620Q959 610 1182 697L1440 810H0Z" fill="#718d79"/><path d="M266 769Q485 663 695 682Q941 647 1175 730L1401 810H130Z" fill="#dfc99f"/>
+    <g id="beacon" opacity="0"><path d="M660 222L-70-42V487Z" fill="#fff4bd" opacity=".28"/><path d="M660 222L1520-10V457Z" fill="#fff4bd" opacity=".25"/></g>
+    <use href="#lighthouse" transform="translate(660 700)"/>
+    <rect x="632" y="390" width="56" height="71" fill="#294a56" rx="5"/>
+    <g id="window-pelican" transform="translate(650 452) scale(.34)"><use href="#pelican-body"/><use href="#rest-wing"/><path id="outro-eyebrow" d="M23-174L52-165" stroke="#29434a" stroke-width="6" stroke-linecap="round"/></g>
+    <path d="M624 467H697" stroke="#ddcba7" stroke-width="9" stroke-linecap="round"/>
+    <g transform="translate(440 669) scale(.64)"><use href="#bicycle"/></g>
+    <use href="#grass" transform="translate(374 729)"/><use href="#grass" transform="translate(824 698)"/><use href="#grass" transform="translate(1258 796) scale(1.7)"/>
+    <g id="outro-gull" transform="translate(1138 405)"><use href="#gull"/></g>
+    <ellipse cx="1050" cy="744" rx="165" ry="18" fill="#7a7052" opacity=".23"/>
+    <use href="#boat" transform="translate(1050 730)"/>
+    <g id="flight-trails" opacity="0" fill="none" stroke="#faf0ce" stroke-width="4" stroke-linecap="round"><path d="M745 365Q886 293 1001 417"/><path d="M779 385Q890 323 966 392"/></g>
+    <g id="flying-computer"><use href="#tiny-pc"/></g>
+    <g id="impact" opacity="0"><g id="impact-cloud" fill="#f7e9c9" stroke="#c6b591" stroke-width="2"><circle cx="987" cy="680" r="38"/><circle cx="1030" cy="652" r="43"/><circle cx="1085" cy="677" r="37"/><circle cx="1120" cy="702" r="32"/><circle cx="979" cy="712" r="35"/><circle cx="1044" cy="704" r="53"/></g><text x="1045" y="681" text-anchor="middle" font-size="43" fill="#aa583f" font-weight="900" transform="rotate(-8 1045 681)">CRASH!</text></g>
+    <g id="white-flag" opacity="0" class="fine"><path d="M1057 692V620" stroke="#7c735b" stroke-width="4"/><path id="flag-cloth" d="M1057 621Q1076 609 1098 622V651Q1075 639 1057 651Z" fill="#fff5da" stroke="#bcae8c" stroke-width="2"/></g>
+    <g id="end-card" opacity="0"><text x="97" y="273" class="serif" font-size="68" fill="#294f59">The light is on.</text><text x="98" y="349" class="serif" font-size="68" font-style="italic" fill="#ad5b45">No answer.</text><path d="M102 380H345" stroke="#ad5b45" stroke-width="3"/><text x="101" y="417" font-size="16" fill="#40636a" letter-spacing="4">END OF THE WORK REQUEST</text></g>
+    <g id="beacon-glint" opacity="0"><circle cx="660" cy="222" r="58" fill="url(#lamp)"/><circle cx="660" cy="222" r="13" fill="#fff1ae"/></g>
+    <text x="1379" y="745" text-anchor="end" class="serif" font-size="23" font-style="italic" fill="#556d69">fin.</text>
+  </g>
+  <rect width="1440" height="810" filter="url(#grain)" opacity=".55" pointer-events="none"/>
+  <rect id="transition" width="1440" height="810" fill="#f4e6c9" opacity="0" pointer-events="none"/>
+  </svg>
+  <div class="scene-label"><span class="live-dot"></span><span id="scene-label">01 · TO WORK</span></div>
+  </section>
+  <div class="transport" role="group" aria-label="Cartoon controls">
+    <button id="play" class="button primary" type="button" aria-label="Pause" title="Pause / play"><svg id="play-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 3H8V17H5ZM12 3H15V17H12Z"/></svg></button>
+    <button id="replay" class="button" type="button" aria-label="Watch from the beginning" title="Replay"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.1 5.6A7 7 0 1 1 3 12h2a5 5 0 1 0 .7-5L9 10H2V3Z"/></svg></button>
+    <div class="scrubber"><span id="elapsed" class="time">0:00</span><label for="seek" class="sr-only">Seek through cartoon</label><input id="seek" type="range" min="0" max="46" step="0.05" value="0" aria-valuetext="0 seconds of 46"><span class="time">0:46</span></div>
+    <button id="sound" class="button" type="button" aria-pressed="false" aria-label="Turn sound on" title="Sound"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 7H6L11 3V17L6 13H2Z"/><path id="sound-waves" d="M14 7L18 13M18 7L14 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+  </div>
+  <nav class="chapters" aria-label="Cartoon scenes">
+    <button class="chapter active" data-time="0" type="button" aria-current="step"><span class="number">01 / 00:00</span><span class="name">To Work</span></button>
+    <button class="chapter" data-time="13" type="button"><span class="number">02 / 00:13</span><span class="name">Lighthouse #04</span></button>
+    <button class="chapter" data-time="18" type="button"><span class="number">03 / 00:18</span><span class="name">All According to Plan</span></button>
+    <button class="chapter" data-time="24" type="button"><span class="number">04 / 00:24</span><span class="name">No Connection</span></button>
+    <button class="chapter" data-time="31" type="button"><span class="number">05 / 00:31</span><span class="name">Going Offline</span></button>
+  </nav>
+  <footer class="footer"><span>A little story about big expectations.</span><span>46 seconds · SVG animation · Optional sound</span></footer>
+  <p id="accessible-scene" class="sr-only" aria-live="polite">A pelican rides a bicycle to work at the lighthouse.</p>
+  <noscript><p>Enable JavaScript to watch the cartoon. The pelican rides to the lighthouse, discovers that ChatGPT is not working, and throws the computer out the window.</p></noscript>
+</main>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const ids = ['coast-scene','office-scene','outro-scene','coast-camera','rider','rider-shadow','coast-clouds','coast-waves','coast-birds','distant-boat','parked-bike','arrival-pelican','morning-notes','opening-card','spoke-left','spoke-right','far-leg','near-leg','pedal-foot','crank','office-pelican','office-wing','office-legs','office-shadow','angry-face','steam','steam-left','steam-right','office-computer','screen-boot','screen-error','loading-spinner','boot-progress','office-bubble','bubble-text','bubble-second','rage-marks','whoosh','office-shake','desk-lamp-glow','flying-computer','flight-trails','impact','impact-cloud','white-flag','flag-cloth','end-card','beacon','beacon-glint','outro-gull','outro-waves','outro-eyebrow','window-pelican','transition'];
+  const el = Object.fromEntries(ids.map(id => [id,$(id)]));
+  const DURATION=46, PI=Math.PI, TAU=PI*2;
+  const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+  const progress=(t,a,b)=>clamp((t-a)/(b-a));
+  const smooth=v=>{v=clamp(v);return v*v*(3-2*v)};
+  const mix=(a,b,v)=>a+(b-a)*v;
+  const attr=(id,k,v)=>el[id].setAttribute(k,v);
+  const tr=(id,v)=>attr(id,'transform',v);
+  const opacity=(id,v)=>attr(id,'opacity',clamp(v));
+  const show=(id,on)=>{el[id].style.display=on?'':'none'};
+  let t=0,playing=!matchMedia('(prefers-reduced-motion: reduce)').matches,last=0,frame=0,chapter=-1;
+  let soundOn=false,audio=null;
+  const soundEvents=[{at:1.3,type:'bell'},{at:9.7,type:'bell'},{at:16.5,type:'door'},{at:20.8,type:'click'},{at:21,type:'boot'},{at:24,type:'error'},{at:25.5,type:'click'},{at:26,type:'click'},{at:26.5,type:'click'},{at:27.1,type:'click'},{at:27.3,type:'click'},{at:27.5,type:'click'},{at:33,type:'whoosh'},{at:36.2,type:'crash'},{at:39.2,type:'bell'}];
+  const chapterNames=['01 · TO WORK','02 · LIGHTHOUSE #04','03 · ALL ACCORDING TO PLAN','04 · NO CONNECTION','05 · GOING OFFLINE'];
+  const chapterDescriptions=['The pelican pedals along the coastal road.','The pelican parks his bicycle and enters the lighthouse.','The pelican turns on the computer in the lighthouse office.','An error appears: ChatGPT is not working. The pelican gets angry.','The pelican throws the computer through the open window. It lands in an empty boat. The lighthouse light turns on.'];
+  const chapterButtons=[...document.querySelectorAll('.chapter')];
+  function draw(time){
+    const coast=time<17.5,office=time>=17.5&&time<34;
+    show('coast-scene',coast);show('office-scene',office);show('outro-scene',time>=34);
+    // All movement comes from the playhead, so pause and seeking are deterministic.
+    if(coast){
+      const ride=clamp(time/13), x=260+1578*(1-Math.pow(1-ride,1.16));
+      const cam=clamp(x-450,0,850), bob=time<13?Math.sin(time*8)*2:0;
+      tr('coast-camera',`translate(${-cam} 0)`);
+      tr('coast-clouds',`translate(${-time*2.3} 0)`);
+      tr('coast-waves',`translate(${Math.sin(time*.6)*12} ${Math.sin(time*.8)*2})`);
+      tr('coast-birds',`translate(${-time*8} ${Math.sin(time*1.3)*9})`);
+      tr('distant-boat',`translate(${785-time*3} ${435+Math.sin(time*1.2)*3}) rotate(${Math.sin(time)*2})`);
+      tr('rider',`translate(${x} ${587+bob})`);opacity('rider',time<13?1:0);
+      attr('rider-shadow','cx',time<13?x:1838);
+      opacity('parked-bike',time>=13?1:0);
+      const angle=time*450,phase=time*9,px=-3+21*Math.cos(phase),py=68+21*Math.sin(phase);
+      tr('spoke-left',`rotate(${angle} -92 68)`);tr('spoke-right',`rotate(${angle} 101 68)`);
+      attr('far-leg','d',`M-11-14L${19-10*Math.cos(phase)} 31L${-3-21*Math.cos(phase)} ${68-21*Math.sin(phase)}`);
+      attr('near-leg','d',`M-36-12Q${-57+13*Math.cos(phase)} 27 ${px} ${py}`);
+      attr('pedal-foot','d',`M${px-7} ${py}l25 2`);attr('crank','d',`M-3 68L${px} ${py}`);
+      const walk=progress(time,13.2,16.75),wx=mix(1838,2020,smooth(walk)),wy=590-Math.sin(walk*PI)*15;
+      tr('arrival-pelican',`translate(${wx} ${wy+Math.sin(walk*TAU*3)*3}) scale(.82)`);
+      opacity('arrival-pelican',time>=13?1-smooth(progress(time,16.5,17.2)):0);
+      tr('morning-notes',`translate(${x+100} ${285+Math.sin(time*2)*7})`);opacity('morning-notes',time<11.5?.75:0);
+      opacity('opening-card',1-smooth(progress(time,3.5,5.3)));
+    }
+    if(office){
+      const enter=smooth(progress(time,17.8,19.5));
+      let hx=mix(264,530,enter),hy=530+(time<19.5?Math.sin(time*10)*3:0),rot=0;
+      if(time>=31){hx=mix(530,812,smooth(progress(time,31,33.35)));hy=mix(530,492,smooth(progress(time,31,32)));rot=-8*Math.sin(progress(time,31,33.5)*PI)}
+      const rage=progress(time,27.5,29.3), shake=time>=28&&time<31?Math.sin(time*49)*2.3:0;
+      tr('office-pelican',`translate(${hx+shake} ${hy}) rotate(${rot})`);
+      tr('office-legs',`translate(0 ${time<19.5?Math.sin(time*10)*4:0})`);
+      attr('office-shadow','cx',hx);opacity('office-shadow',time<32?.17:.09);
+      let wing='M-42-79Q-66-46-23-13Q-3-11 17-42Q-11-35-12-58';
+      if(time>=20&&time<28){
+        const reach=smooth(progress(time,20,20.75));
+        const tap=time>=25&&time<27.8?Math.max(0,Math.sin(time*18))*9:0;
+        const ex=mix(-4,112,reach),ey=mix(-22,-5-tap,reach);
+        wing=`M-42-79Q12-85 ${ex} ${ey-14}Q${ex+16} ${ey+3} ${ex-2} ${ey+9}Q3-1-39-46Z`;
+      }
+      if(time>=28&&time<31){const a=Math.sin(time*15)*5;wing=`M-42-79Q17-83 74 ${-68+a}L83 ${-93+a}Q102-101 109-84L108-47Q75-32-23-24Z`}
+      if(time>=31){const u=smooth(progress(time,31,32));wing=`M-42-79Q15-95 ${mix(108,126,u)} ${mix(-8,-117,u)}Q${mix(130,146,u)} ${mix(-18,-143,u)} ${mix(143,149,u)} ${mix(7,-119,u)}Q80 ${mix(30,-40,u)}-16-24Z`}
+      attr('office-wing','d',wing);
+      opacity('angry-face',rage);opacity('steam',time>=28&&time<32?rage:0);
+      tr('steam-left',`translate(0 ${-Math.sin(time*7)*6})`);tr('steam-right',`translate(0 ${Math.cos(time*7)*6})`);
+      opacity('rage-marks',time>=28&&time<31?rage*(.7+.3*Math.sin(time*18)):0);
+      opacity('desk-lamp-glow',smooth(progress(time,20.6,21.4))*.55);
+      show('screen-boot',time>=21&&time<24);show('screen-error',time>=24);
+      tr('loading-spinner',`rotate(${time*220} 0 -24)`);attr('boot-progress','width',126*progress(time,21,24));
+      let cx=845,cy=431,cr=0,cs=1;
+      if(time>=31&&time<33){const lift=smooth(progress(time,31,32.2));cx=mix(845,hx+122,lift);cy=mix(431,hy-137,lift);cr=-12*lift}
+      if(time>=33){const fly=progress(time,33,34);cx=mix(923,1277,fly);cy=350-110*Math.sin(fly*PI*.85);cr=-12+fly*83;cs=1-fly*.28}
+      tr('office-computer',`translate(${cx} ${cy}) rotate(${cr}) scale(${cs})`);
+      const bubble=time>=19.4&&time<21.3?1:time>=25.2&&time<27.8?1:time>=28.5&&time<30.8?1:0;
+      opacity('office-bubble',bubble);
+      $('bubble-text').textContent=time<24?'Well, let’s work!':time<28?'What if I try again?..':'WHAT IS GOING ON!';
+      $('bubble-second').textContent=time<24?'Coffee. Sea. ChatGPT.':time<28?'Click. Click. Click.':'Restarting now.';
+      tr('office-shake',time>=28.5&&time<30.5?`translate(${Math.sin(time*40)*1.4} ${Math.cos(time*31)})`:'translate(0 0)');
+      opacity('whoosh',Math.sin(progress(time,33,34)*PI));
+    }
+    if(time>=34){
+      const flight=progress(time,34,36.2),landed=time>=36.2;
+      const fx=mix(726,1048,flight),fy=391-205*Math.sin(flight*PI)+308*flight*flight;
+      tr('flying-computer',landed?'translate(1048 695) rotate(19) scale(.36)':`translate(${fx} ${fy}) rotate(${mix(40,395,flight)}) scale(.36)`);
+      opacity('flying-computer',1);
+      opacity('flight-trails',time<36.2?Math.sin(flight*PI)*.8:0);
+      const impact=progress(time,36.2,37.8);opacity('impact',landed?1-smooth(impact):0);
+      tr('impact-cloud',`translate(1045 696) scale(${1+impact*.7}) translate(-1045 -696)`);
+      opacity('white-flag',smooth(progress(time,37.6,38.3)));
+      attr('flag-cloth','d',`M1057 621Q1076 ${615+Math.sin(time*4)*6} 1098 622V651Q1075 ${644+Math.sin(time*4)*6} 1057 651Z`);
+      opacity('end-card',smooth(progress(time,39,40.5)));
+      const light=smooth(progress(time,39,40));opacity('beacon',light);opacity('beacon-glint',light);
+      tr('beacon',`translate(660 222) scale(${.72+.28*Math.sin((time-38)*.8)},1) translate(-660 -222)`);
+      tr('outro-gull',`translate(${1138-(time-34)*21} ${405+Math.sin(time*2.5)*11})`);
+      tr('outro-waves',`translate(${Math.sin(time*.7)*11} 0)`);
+      opacity('outro-eyebrow',1-smooth(progress(time,38,40)));
+      tr('window-pelican',`translate(650 ${452+Math.sin(time*1.8)*1.5}) scale(.34)`);
+    }
+    // Brief paper-colored dissolves cover the two scene cuts.
+    const dissolve=Math.max(1-Math.abs(time-17.5)/.35,1-Math.abs(time-34)/.16,0);
+    opacity('transition',dissolve);
+    const ci=time<13?0:time<18?1:time<24?2:time<31?3:4;
+    if(ci!==chapter){chapter=ci;$('scene-label').textContent=chapterNames[ci];$('accessible-scene').textContent=chapterDescriptions[ci];chapterButtons.forEach((b,i)=>{b.classList.toggle('active',i===ci);if(i===ci)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')})}
+    $('seek').value=time;$('seek').setAttribute('aria-valuetext',`${Math.floor(time)} seconds of 46`);$('elapsed').textContent=`0:${String(Math.floor(time)).padStart(2,'0')}`;
+  }
+  function updatePlay(){
+    $('play').setAttribute('aria-label',playing?'Pause':t>=DURATION?'Watch from the beginning':'Play');
+    $('play-icon').innerHTML=playing?'<path d="M5 3H8V17H5ZM12 3H15V17H12Z"/>':'<path d="M5 2L18 10L5 18Z"/>';
+  }
+  function tick(now){
+    if(!playing){frame=0;return}
+    const before=t;t=Math.min(DURATION,t+Math.min((now-last)/1000,.08));last=now;
+    for(const event of soundEvents){if(event.at>before&&event.at<=t)playSound(event.type)}
+    draw(t);if(t>=DURATION){playing=false;updatePlay();frame=0;return}frame=requestAnimationFrame(tick);
+  }
+  function setPlaying(value){playing=value;updatePlay();if(playing){last=performance.now();if(!frame)frame=requestAnimationFrame(tick)}else{cancelAnimationFrame(frame);frame=0}}
+  function jump(value){t=clamp(value,0,DURATION);draw(t);last=performance.now();if(t>=DURATION)setPlaying(false)}
+  $('play').addEventListener('click',()=>{if(t>=DURATION)jump(0);setPlaying(!playing)});
+  $('replay').addEventListener('click',()=>{jump(0);setPlaying(true)});
+  $('seek').addEventListener('input',event=>jump(Number(event.target.value)));
+  chapterButtons.forEach(button=>button.addEventListener('click',()=>{jump(Number(button.dataset.time));setPlaying(true)}));
+  // Optional synthesized foley; no downloads or external media are needed.
+  function tone(freq,duration,type='sine',volume=.08,delay=0,endFreq=freq){
+    if(!audio||!soundOn)return;const start=audio.currentTime+delay,osc=audio.createOscillator(),gain=audio.createGain();
+    osc.type=type;osc.frequency.setValueAtTime(freq,start);osc.frequency.exponentialRampToValueAtTime(Math.max(20,endFreq),start+duration);
+    gain.gain.setValueAtTime(.0001,start);gain.gain.exponentialRampToValueAtTime(volume,start+.012);gain.gain.exponentialRampToValueAtTime(.0001,start+duration);
+    osc.connect(gain);gain.connect(audio.destination);osc.start(start);osc.stop(start+duration+.025);
+  }
+  function noise(duration,volume,filterFreq){
+    if(!audio||!soundOn)return;const n=Math.ceil(audio.sampleRate*duration),buffer=audio.createBuffer(1,n,audio.sampleRate),data=buffer.getChannelData(0);
+    for(let i=0;i<n;i++)data[i]=(Math.random()*2-1)*(1-i/n);
+    const source=audio.createBufferSource(),gain=audio.createGain(),filter=audio.createBiquadFilter();source.buffer=buffer;filter.type='lowpass';filter.frequency.value=filterFreq;gain.gain.value=volume;source.connect(filter);filter.connect(gain);gain.connect(audio.destination);source.start();
+  }
+  function playSound(type){
+    if(!soundOn||!audio)return;
+    if(type==='bell'){tone(1320,.7,'sine',.09);tone(1760,.55,'sine',.045,.13)}
+    if(type==='door'){tone(120,.17,'triangle',.10,0,55);noise(.15,.07,1200)}
+    if(type==='click'){tone(740,.045,'square',.025,0,330)}
+    if(type==='boot'){tone(330,.25,'sine',.05);tone(440,.35,'sine',.05,.17);tone(660,.4,'sine',.045,.34)}
+    if(type==='error'){tone(230,.25,'triangle',.085,0,180);tone(180,.4,'triangle',.07,.26,100)}
+    if(type==='whoosh')noise(.7,.19,1800);
+    if(type==='crash'){noise(.6,.32,2800);tone(90,.45,'triangle',.18,0,30);tone(430,.2,'square',.03,.16,130)}
+  }
+  $('sound').addEventListener('click',async()=>{
+    try{
+      if(!audio){const AudioContext=window.AudioContext||window.webkitAudioContext;if(!AudioContext){$('sound').title='This browser does not support sound';return}audio=new AudioContext()}
+      soundOn=!soundOn;if(soundOn)await audio.resume();else await audio.suspend();
+      $('sound').setAttribute('aria-pressed',String(soundOn));$('sound').setAttribute('aria-label',soundOn?'Turn sound off':'Turn sound on');
+      $('sound-waves').setAttribute('d',soundOn?'M14 6Q18 10 14 14M16 3Q22 10 16 17':'M14 7L18 13M18 7L14 13');
+      if(soundOn)playSound('bell');
+}catch{soundOn=false;$('sound').setAttribute('aria-pressed','false');$('sound').setAttribute('aria-label','Sound unavailable')}
+  });
+  // Native controls keep keyboard access. Space pauses when focus is outside a control.
+  document.addEventListener('keydown',event=>{if(event.code==='Space'&&!/^(INPUT|BUTTON|SELECT|TEXTAREA)$/.test(event.target.tagName)){event.preventDefault();if(t>=DURATION)jump(0);setPlaying(!playing)}});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden&&playing)setPlaying(false)});
+  draw(0);updatePlay();if(playing){last=performance.now();frame=requestAnimationFrame(tick)}
+})();
+</script>
+<script id="pelican-preview-sizing">
+(() => {
+  if (window.parent === window) return;
+  document.documentElement.classList.add('pelican-embedded');
+  let pending = false;
+  let lastHeight = 0;
+  function measure() {
+    pending = false;
+    if (document.documentElement.clientWidth === 0) return;
+    const height = Math.ceil(document.body.getBoundingClientRect().height) + 2;
+    if (height > 0 && height !== lastHeight) {
+      lastHeight = height;
+      window.parent.postMessage({type: 'pelican-preview-height', height}, '*');
+    }
+  }
+  function schedule() {
+    if (!pending) { pending = true; requestAnimationFrame(measure); }
+  }
+  new ResizeObserver(schedule).observe(document.body);
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  window.addEventListener('message', event => {
+    if (event.source === window.parent && event.data?.type === 'pelican-preview-measure') {
+      lastHeight = 0;
+      schedule();
+    }
+  });
+  document.fonts.ready.then(schedule);
+  schedule();
+})();
+</script>
+</body>
+</html>

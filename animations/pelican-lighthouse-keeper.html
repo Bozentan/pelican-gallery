@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f5f1e7"><title>The Lighthouse Keeper — A Pelican Cartoon</title>
+<style>
+:root{color-scheme:light;font-family:"Trebuchet MS",Arial,sans-serif;color:#284f49;background:#f5f1e7}*{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;padding:28px 20px}main{width:min(1100px,100%)}header{display:flex;align-items:end;justify-content:space-between;gap:20px;padding:0 22px 22px}.eyebrow{font-size:10px;letter-spacing:.22em;font-weight:700;margin:0 0 12px}h1{font:400 clamp(31px,4.8vw,54px)/1.05 Georgia,serif;letter-spacing:-.04em;margin:0}.tagline{font-size:12px;line-height:1.7;text-align:right;color:#70806e;margin:0}.stage{border-radius:18px;overflow:hidden;background:#e6eddf;box-shadow:0 12px 45px #4960470b}svg{display:block;width:100%;height:auto}.subtitle{margin:0;background:#2f5149;color:#fff3d7;min-height:54px;padding:16px 22px;text-align:center;font:17px/1.4 Georgia,serif}.player{display:flex;align-items:center;gap:13px;padding:17px 2px 0;flex-wrap:wrap}button{font:12px "Trebuchet MS",sans-serif;color:#2f5149;border:1px solid #b4c1aa;border-radius:24px;background:transparent;padding:11px 17px;min-height:44px;cursor:pointer}button:hover{background:#e5e8d9}button:focus-visible,input:focus-visible{outline:3px solid #c47656;outline-offset:4px}#play{background:#315c52;color:#fff4d9;border-color:#315c52;min-width:90px}.seek-label{flex:1;min-width:150px;display:flex;align-items:center;gap:10px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}input{accent-color:#3b7b68;cursor:pointer}#timeline{width:100%;height:20px}#clock{font-size:11px;white-space:nowrap;font-variant-numeric:tabular-nums}.speed-label{display:flex;align-items:center;gap:7px;font-size:11px}select{font:inherit;background:#f5f1e7;color:#315c52;border:1px solid #b4c1aa;border-radius:7px;padding:8px}footer{display:flex;justify-content:space-between;gap:20px;margin-top:17px;font-size:10px;letter-spacing:.1em;color:#7b8774}.chapters{display:flex;gap:6px;flex-wrap:wrap;margin-top:15px}.chapters button{border-color:transparent;color:#76836f;min-height:34px;padding:7px 12px;font-size:10px;letter-spacing:.07em}.chapters button[aria-current="true"]{color:#315c52;background:#e5e9d9}@media(max-width:600px){body{padding:23px 10px}header{padding:0 8px 18px}.tagline{display:none}.subtitle{font-size:14px;min-height:62px;padding:13px}.player{gap:8px}.seek-label{order:5;flex-basis:100%}.speed-label{margin-left:auto}.chapters{gap:0}.chapters button{padding:7px 8px}footer{font-size:8px}.stage{border-radius:12px}}
+</style>
+<style id="pelican-preview-layout">
+#subtitle, .chapters { display: none !important; }
+html.pelican-embedded { min-height: 0 !important; height: auto !important; overflow: hidden; }
+.pelican-embedded body { min-height: 0 !important; height: auto !important; display: flow-root !important; width: 100%; box-sizing: border-box; overflow: hidden; }
+.pelican-embedded body > main, .pelican-embedded body > .card, .pelican-embedded .page { max-width: 100%; margin-left: auto; margin-right: auto; }
+.pelican-embedded :is(header, .title, .controls, nav, .transport, footer) { flex-wrap: wrap; }
+.pelican-embedded :is(header, .title, .controls, nav, .transport, footer) > * { min-width: 0; }
+.pelican-embedded :is(h1, .eyebrow) { overflow-wrap: anywhere; }
+.pelican-embedded input[type="range"] { max-width: 100%; }
+</style>
+</head><body><main>
+<header><div><p class="eyebrow">THE SLOW COAST CLUB PRESENTS · A SHORT CARTOON</p><h1>The lighthouse keeper.</h1></div><p class="tagline">One bird. One lighthouse.<br>One very bad connection.</p></header>
+<div class="stage"><svg id="illustration" viewBox="0 0 1000 600" role="img" aria-labelledby="scene-title scene-desc" xmlns="http://www.w3.org/2000/svg">
+      <title id="scene-title">The lighthouse keeper: a pelican cartoon</title>
+      <desc id="scene-desc">A pelican cycles to his lighthouse job, switches on his computer, finds that ChatGPT is not working, grows furious and throws the computer out of the open window into the sea. He returns to work with pencil and paper.</desc>
+      <defs>
+        <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#e6eddf"/><stop offset="1" stop-color="#f6efcf"/></linearGradient>
+        <linearGradient id="sea" x2="0" y2="1"><stop stop-color="#99c4b7"/><stop offset="1" stop-color="#c0d4b9"/></linearGradient>
+        <pattern id="ripples" width="180" height="44" patternUnits="userSpaceOnUse"><path d="M8 12h42m53 22h56" fill="none" stroke="#e5ebce" stroke-width="3" stroke-linecap="round"/></pattern>
+        <pattern id="road" width="240" height="90" patternUnits="userSpaceOnUse"><path d="M20 42h95" stroke="#f9efce" stroke-width="5" stroke-linecap="round"/></pattern>
+        <g id="cloud" fill="#f9f7e8"><path d="M0 26C-2 14 11 6 22 11C25-8 58-8 62 12C78 7 89 15 89 26Z"/></g>
+        <g id="spokes" stroke="#728d83" stroke-width="2" opacity=".8"><path d="M-83 0H83M0-83V83M-58.7-58.7L58.7 58.7M-58.7 58.7L58.7-58.7M-76.7-31.8L76.7 31.8M-31.8-76.7L31.8 76.7M-76.7 31.8L76.7-31.8M-31.8 76.7L31.8-76.7"/><path d="M-37-69l8 15" stroke="#f8e8b8" stroke-width="6" stroke-linecap="round"/></g>
+        <g id="plant" fill="none" stroke="#769882" stroke-width="4" stroke-linecap="round"><path d="M0 0q-1-27-18-43M0 0q4-36 23-53M0 0q-13-15-28-17M0 0q12-18 33-23"/></g>
+            <g id="tower-art" stroke="#365951" stroke-width="3" stroke-linejoin="round">
+        <path d="M-85 190L-55-155H55L85 190Z" fill="#faf4df"/>
+        <path d="M-72 50h144l7 77H-79ZM-62-70H62l7 77H-69Z" fill="#d77960" stroke="none"/>
+        <path d="M-55-155h110v-73H-55Z" fill="#88b9af"/>
+        <path d="M-66-228l66-42 66 42Z" fill="#365951"/>
+        <path d="M-68-155H68M-71-141H71M0-225v67M-34-225v67M34-225v67" fill="none"/>
+        <path d="M-85-155v-24H85v24M-85-166H85M-70-179v24M70-179v24" fill="none"/>
+        <path d="M-21 190v-58a21 21 0 0 1 42 0v58Z" fill="#365951"/>
+        <path d="M-18-103a18 18 0 0 1 36 0v27H-18Z" fill="#73a99f"/>
+        <path d="M-22 22h44v47H-22Z" fill="#345c57"/><path d="M-26 70h52" stroke="#f9eed2" stroke-width="7"/>
+        <circle cy="-192" r="15" fill="#f0ca78" stroke="none"/>
+        <path d="M-100 191H100" stroke="#365951" stroke-width="9"/>
+      </g>
+      <g id="standing-pelican" stroke="#365951" stroke-width="3" stroke-linejoin="round">
+        <path d="M-35 62l-8 51h38M13 63l8 50h33" fill="none" stroke="#cf9649" stroke-width="11" stroke-linecap="round"/>
+        <path d="M-60-8l-43-20 16 35-18-1q21 28 59 20" fill="#fdf9e8"/>
+        <path d="M-62-38C-28-79 33-58 47-15Q65 46 16 73Q-39 83-68 32Q-84-9-62-38Z" fill="#fcfaee"/>
+        <path d="M-61 26Q-25 60 26 45Q11 82-29 63Z" fill="#dbe4d8" stroke="none"/>
+        <path d="M4-27Q36-57 22-91Q10-137 37-163Q62-184 87-164Q108-144 91-125Q81-114 65-117Q52-96 68-68Q91-23 45 9" fill="#fcfaee"/>
+        <path d="M84-144L234-122Q201-105 173-109Q108-53 85-125Z" fill="#e7b266"/>
+        <path d="M84-145Q146-150 234-122L86-125Z" fill="#f3cc7c"/>
+        <path d="M99-120q25 34 56 15" fill="none" stroke="#c88f4c"/>
+        <circle cx="74" cy="-153" r="5" fill="#284f49" stroke="none"/><circle cx="75" cy="-155" r="1.5" fill="#fff" stroke="none"/>
+        <path d="M43-170l-5-12m14 10 2-12" fill="none" stroke-linecap="round"/>
+        <ellipse cx="71" cy="-133" rx="9" ry="5" fill="#e6a085" stroke="none"/>
+        <path d="M24-100q16 12 39 3l5 15q-28 12-48-5Z" fill="#d87457"/>
+        <path d="M25-92q-25-17-56-5l-8 19q34-17 65-3" fill="#cf654c"/>
+        <path d="M-46-19Q-7-36 27-9L58 20Q20 46-26 22Z" fill="#ecf0e3"/>
+        <path d="M-27-4L14 15M-29 9L-1 23" fill="none" stroke="#bacdc0" stroke-linecap="round"/>
+      </g>
+      <g id="computer-shell" stroke="#365951" stroke-width="4" stroke-linejoin="round">
+        <path d="M-13 58l-5 29h55l-14-29" fill="#89a69a"/><rect x="-101" y="-83" width="214" height="146" rx="10" fill="#4b6d63"/>
+        <rect x="-90" y="-72" width="192" height="115" rx="3" fill="#182e2c" stroke="none"/>
+        <circle cx="86" cy="53" r="3" fill="#d8c48e" stroke="none"/>
+      </g>
+      <clipPath id="window-clip"><path d="M804 316V151a72 72 0 0 1 144 0v165Z"/></clipPath></defs><g id="commute-scene">
+      <path fill="url(#sky)" d="M0 0h1000v600H0z"/>
+      <circle cx="778" cy="120" r="54" fill="#efc775"/>
+      <circle cx="778" cy="120" r="70" fill="none" stroke="#efc775" stroke-width="1" opacity=".38"/>
+      <g id="clouds"><use href="#cloud" x="130" y="86"/><use href="#cloud" transform="translate(470 55) scale(.65)"/><use href="#cloud" transform="translate(885 168) scale(1.1)"/><use href="#cloud" x="1230" y="86"/><use href="#cloud" transform="translate(1570 55) scale(.65)"/><use href="#cloud" transform="translate(1985 168) scale(1.1)"/></g>
+      <g fill="none" stroke="#799286" stroke-width="2.5" stroke-linecap="round"><path d="M113 195q9-9 18 0q9-9 18 0M185 161q7-7 14 0q7-7 14 0M848 245q7-7 14 0q7-7 14 0"/></g>
+      <path d="M0 307Q108 281 231 307T504 307T760 301T1000 307V438H0Z" fill="url(#sea)"/>
+      <path d="M0 319h1000" stroke="#dce4c9" stroke-width="3"/>
+      <g opacity=".64"><path d="M45 304q72-38 161 0" fill="#98b7a3"/><path d="M813 306q57-24 131 0" fill="#a6c2a9"/></g>
+      <rect y="333" width="1000" height="100" fill="url(#ripples)" id="water"/>
+      <g transform="translate(860 341)"><path d="M-22 0h45l-9 9h-26Z" fill="#527f77"/><path d="M0-53V-3H-26Z" fill="#fff5da"/><path d="M5-45V-3h21Z" fill="#e4aa7c"/></g>
+      <path d="M0 414Q236 393 439 417T1000 413V600H0Z" fill="#e9d9b1"/>
+      <path d="M0 449Q300 442 620 452T1000 448V600H0Z" fill="#d6c8a6"/>
+      <path d="M0 450Q300 443 620 453T1000 449" fill="none" stroke="#f8edcf" stroke-width="5"/>
+      <rect y="510" width="1000" height="90" fill="url(#road)" id="road-marks"/>
+      <g id="plants"><use href="#plant" x="110" y="445"/><use href="#plant" transform="translate(888 437) scale(.72)"/><use href="#plant" x="1110" y="445"/><use href="#plant" transform="translate(1888 437) scale(.72)"/></g>
+      <g id="arrival-tower" transform="translate(1200 321)"><use href="#tower-art"/><rect x="-129" y="197" width="258" height="31" rx="6" fill="#f7ecd1"/><text x="0" y="218" text-anchor="middle" font-size="13" fill="#365951" letter-spacing="2">GULL POINT LIGHTHOUSE</text></g><ellipse id="bike-shadow" cx="503" cy="536" rx="226" ry="14" fill="#8c9271" opacity=".18"/>
+      <g id="rider-position"><g id="rider">
+        <!-- Far leg is behind the bicycle and the bird. -->
+        <path id="far-leg" d="M452 349L479 399L473 462" fill="none" stroke="#c58b45" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+        <g id="far-foot"><path d="M-9-5Q3-10 15-4L25 4Q7 11-13 5Z" fill="#c58b45"/><path d="M-17 8h39" stroke="#345651" stroke-width="6" stroke-linecap="round"/></g>
+        <!-- Wheels: their centers stay fixed while the spokes turn. -->
+        <g fill="none"><circle cx="350" cy="440" r="91" stroke="#294d49" stroke-width="13"/><circle cx="670" cy="440" r="91" stroke="#294d49" stroke-width="13"/><circle cx="350" cy="440" r="83" stroke="#f5e7c5" stroke-width="4"/><circle cx="670" cy="440" r="83" stroke="#f5e7c5" stroke-width="4"/></g>
+        <g transform="translate(350 440)"><g id="rear-spokes"><use href="#spokes"/></g></g>
+        <g transform="translate(670 440)"><g id="front-spokes"><use href="#spokes"/></g></g>
+        <!-- Chain, frame, fenders, saddle, and bars. -->
+        <path d="M350 427L505 414A27 27 0 0 1 505 468L350 453A13 13 0 0 1 350 427Z" fill="none" stroke="#60726a" stroke-width="3"/>
+        <g fill="none" stroke="#2c827b" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><path d="M350 440L425 334L503 441H350L410 320M425 334H621L503 441M606 300L670 440"/><path d="M273 391A92 92 0 0 1 417 371M600 373A92 92 0 0 1 747 389" stroke="#db865d" stroke-width="7"/></g>
+        <path d="M413 325l-9-29M613 311l-12-45q-4-13 9-13h29" fill="none" stroke="#466b62" stroke-width="7" stroke-linecap="round"/>
+        <path d="M628 253h25" stroke="#284d49" stroke-width="10" stroke-linecap="round"/>
+        <path d="M601 266Q659 302 645 339" fill="none" stroke="#64887b" stroke-width="2"/>
+        <path d="M382 293q26-11 60 0q5 9-6 12h-46q-16-1-8-12" fill="#344f48"/>
+        <g fill="#f5e7c5" stroke="#345b54" stroke-width="4"><circle cx="350" cy="440" r="7"/><circle cx="670" cy="440" r="7"/><circle cx="503" cy="441" r="25"/></g>
+        <circle cx="503" cy="441" r="17" fill="#83a698"/>
+        <path id="crank" d="M471 441H535" stroke="#365e55" stroke-width="6" stroke-linecap="round"/>
+        <!-- Tail and plump body. -->
+        <path d="M372 274L316 248L330 281L309 276Q333 310 385 315Z" fill="#fdf9e8" stroke="#365951" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M370 265C386 232 452 228 480 261C501 285 492 327 464 350C435 368 387 342 366 319C350 304 350 282 370 265Z" fill="#fcfaee" stroke="#365951" stroke-width="3"/>
+        <path d="M368 306Q403 344 466 328Q449 365 416 347Q379 338 368 306" fill="#dee5d9"/>
+        <!-- Curved neck and head, with unmistakable pelican bill and pouch. -->
+        <path d="M451 291C482 260 459 225 480 185C492 161 514 148 536 153C557 156 568 172 565 190C562 211 541 219 524 216C510 242 537 281 505 317Q476 339 451 316" fill="#fcfaee" stroke="#365951" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M504 215Q490 244 512 278Q518 295 503 310" fill="none" stroke="#dfe6da" stroke-width="12" stroke-linecap="round"/>
+        <path d="M551 186L714 210Q681 224 649 223Q581 278 551 205Z" fill="#e9b76b" stroke="#365951" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M551 187Q616 184 714 210L553 206Z" fill="#f1ca7f" stroke="#365951" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M565 212Q589 248 628 229" fill="none" stroke="#ce9858" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="542" cy="177" r="6" fill="#2e514a"/><circle cx="544" cy="175" r="1.8" fill="#fffdf1"/>
+        <path d="M528 164q8-6 16-2" fill="none" stroke="#365951" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M504 156l-5-11m14 8l1-12" stroke="#365951" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="533" cy="196" rx="10" ry="6" fill="#e8a68b" opacity=".65"/>
+        <!-- Scarf streams behind the neck. -->
+        <path id="scarf-tail" d="M492 236C451 225 440 249 401 225L410 247C439 266 465 240 493 249Z" fill="#cf654c" stroke="#a94f3e" stroke-width="2"/>
+        <path d="M483 227q18 13 38 7l3 14q-21 9-42-6Z" fill="#de7859" stroke="#a94f3e" stroke-width="2"/>
+        <path d="M490 231l-2 12m11-8-1 12" stroke="#f6bc8b" stroke-width="3"/>
+        <!-- Wing reaches naturally to the handlebar. -->
+        <path d="M402 270C432 253 462 267 493 280Q549 290 621 254Q630 251 629 260C587 306 531 324 478 311Q429 314 402 288" fill="#f4f5e9" stroke="#365951" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M425 282Q459 298 489 294M431 294Q453 306 471 305" fill="none" stroke="#c0d1c3" stroke-width="3" stroke-linecap="round"/>
+        <path id="near-leg" d="M459 343L505 373L535 441" fill="none" stroke="#e0a34e" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+        <g id="near-foot"><path d="M-9-5Q3-10 15-4L25 4Q7 11-13 5Z" fill="#eab35c" stroke="#ac793c" stroke-width="2"/><path d="M8-3l7 6m-15-5 7 7" stroke="#c58b45" stroke-width="1.5"/><path d="M-17 10h39" stroke="#345651" stroke-width="6" stroke-linecap="round"/></g>
+      </g>
+      </g><g id="parked-bike" opacity="0" transform="translate(434 281) scale(.43)"><!-- Wheels: their centers stay fixed while the spokes turn. -->
+        <g fill="none"><circle cx="350" cy="440" r="91" stroke="#294d49" stroke-width="13"/><circle cx="670" cy="440" r="91" stroke="#294d49" stroke-width="13"/><circle cx="350" cy="440" r="83" stroke="#f5e7c5" stroke-width="4"/><circle cx="670" cy="440" r="83" stroke="#f5e7c5" stroke-width="4"/></g>
+        <g transform="translate(350 440)"><g><use href="#spokes"/></g></g>
+        <g transform="translate(670 440)"><g><use href="#spokes"/></g></g>
+        <!-- Chain, frame, fenders, saddle, and bars. -->
+        <path d="M350 427L505 414A27 27 0 0 1 505 468L350 453A13 13 0 0 1 350 427Z" fill="none" stroke="#60726a" stroke-width="3"/>
+        <g fill="none" stroke="#2c827b" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><path d="M350 440L425 334L503 441H350L410 320M425 334H621L503 441M606 300L670 440"/><path d="M273 391A92 92 0 0 1 417 371M600 373A92 92 0 0 1 747 389" stroke="#db865d" stroke-width="7"/></g>
+        <path d="M413 325l-9-29M613 311l-12-45q-4-13 9-13h29" fill="none" stroke="#466b62" stroke-width="7" stroke-linecap="round"/>
+        <path d="M628 253h25" stroke="#284d49" stroke-width="10" stroke-linecap="round"/>
+        <path d="M601 266Q659 302 645 339" fill="none" stroke="#64887b" stroke-width="2"/>
+        <path d="M382 293q26-11 60 0q5 9-6 12h-46q-16-1-8-12" fill="#344f48"/>
+        <g fill="#f5e7c5" stroke="#345b54" stroke-width="4"><circle cx="350" cy="440" r="7"/><circle cx="670" cy="440" r="7"/><circle cx="503" cy="441" r="25"/></g>
+        <circle cx="503" cy="441" r="17" fill="#83a698"/>
+        <path d="M471 441H535" stroke="#365e55" stroke-width="6" stroke-linecap="round"/>
+        </g><g id="arrival-walker" visibility="hidden"><use href="#standing-pelican"/></g><g fill="#697a61" font-family="'Trebuchet MS', sans-serif" font-size="10" letter-spacing="3"><text x="32" y="570">SALT AIR, NO HURRY.</text><text x="968" y="570" text-anchor="end">COASTAL ROUTE 01</text></g>
+    </g>
+    <!-- The lighthouse office. Everything is drawn locally, including the fictional error screen. -->
+    <g id="office-scene" visibility="hidden">
+      <path fill="#efe7cf" d="M0 0h1000v600H0z"/>
+      <path d="M0 453h1000v147H0Z" fill="#bcae8c"/>
+      <g stroke="#d5c9aa" stroke-width="2" opacity=".7"><path d="M0 110h1000M0 210h790M0 310h790M0 410h1000M150 0v110m240 0v100m-220 0v100m250 0v100m210-300V0M740 310v100"/></g>
+      <path d="M0 454h1000M0 469h1000" stroke="#64786a" stroke-width="7"/>
+      <g stroke="#a49376" stroke-width="2"><path d="M0 524h1000M0 580h1000M170 470L120 600M480 470v130M750 470l75 130"/></g>
+      <g transform="translate(162 177)"><rect x="-73" y="-90" width="146" height="174" rx="4" fill="#f7f0d9" stroke="#769283" stroke-width="5"/><path d="M-54 39q30-46 57-15t49-24M-50 57q38-31 97-20" fill="none" stroke="#91b7a4" stroke-width="3"/><path d="M0-51l-15 57h30Z" fill="#d98161"/><path d="M-23 9h46" stroke="#385e54" stroke-width="5"/><text y="-64" text-anchor="middle" font-size="12" letter-spacing="2" fill="#385e54">GULL POINT</text><text y="70" text-anchor="middle" font-size="10" fill="#385e54">KEEP THE LIGHT ON</text></g>
+      <g transform="translate(493 89)"><circle r="34" fill="#faf3df" stroke="#799283" stroke-width="5"/><path d="M0-22V0L17 8" stroke="#365951" stroke-width="3" fill="none"/><circle r="3" fill="#d77960"/></g>
+      <path d="M795 324V151a81 81 0 0 1 162 0v173Z" fill="#769586"/>
+      <g clip-path="url(#window-clip)"><path d="M800 70h150v255H800Z" fill="#dfe9d6"/><circle cx="925" cy="122" r="28" fill="#ecc66f"/><path d="M800 232h160v110H800Z" fill="#98c5b4"/><path d="M816 256h41m30 31h50m-119 12h29" stroke="#e2ead0" stroke-width="3"/></g>
+      <path d="M804 149L764 132V335L804 316Z" fill="#c5d8be" stroke="#52776b" stroke-width="4"/><path d="M948 149l35-17v203l-35-19Z" fill="#c5d8be" stroke="#52776b" stroke-width="4"/>
+      <path d="M789 329h176" stroke="#f9f1d8" stroke-width="12" stroke-linecap="round"/>
+      <text x="876" y="363" text-anchor="middle" fill="#788777" font-size="10" letter-spacing="2">FRESH AIR DEPARTMENT</text>
+      <g id="office-chair"><path d="M302 301v129h90" fill="none" stroke="#486b60" stroke-width="15" stroke-linecap="round"/><path d="M328 433l-13 95m69-95 15 95" stroke="#486b60" stroke-width="9"/><rect x="283" y="286" width="52" height="112" rx="19" fill="#789c86"/></g>
+      <g id="office-bird" transform="translate(398 358)"><use href="#standing-pelican"/>
+        <path id="angry-brow" d="M59-162L84-153" stroke="#763d31" stroke-width="5" stroke-linecap="round" opacity="0"/>
+        <ellipse id="red-cheek" cx="71" cy="-133" rx="17" ry="13" fill="#dd6352" opacity="0"/>
+        <path id="acting-wing" d="M-36-17Q6-27 50 8L135 33Q142 40 130 47Q60 55 2 28" fill="#f4f5e9" stroke="#365951" stroke-width="3" stroke-linejoin="round"/>
+      </g>
+      <g id="steam" fill="none" stroke="#c5674f" stroke-width="4" stroke-linecap="round" opacity="0"><path d="M430 137q-16-17 0-29t0-27M473 128q15-17 0-29t0-24"/></g>
+      <g id="desk"><path d="M501 407l-12 137m255-137 12 137" stroke="#6f7760" stroke-width="13"/><rect x="465" y="392" width="322" height="23" rx="7" fill="#cf9c67" stroke="#536c5a" stroke-width="3"/><path d="M514 426h207v42H514Z" fill="#b2885e"/><path d="M602 443h31" stroke="#536c5a" stroke-width="4" stroke-linecap="round"/>
+        <g id="keyboard" transform="translate(615 384)"><path d="M-79-10H57L71 4H-90Z" fill="#d4d8bb" stroke="#48685b" stroke-width="2"/><path d="M-65-4h108" stroke="#789283" stroke-width="3" stroke-dasharray="5 3"/></g>
+        <g transform="translate(755 375)"><path d="M-12-19h23v32h-23Z" fill="#fcf0d1" stroke="#647b66" stroke-width="3"/><path d="M11-12q20 0 1 18" fill="none" stroke="#647b66" stroke-width="3"/><text x="0" y="2" text-anchor="middle" font-size="9" fill="#c76e53">SEA</text></g>
+      </g>
+      <g id="office-computer" transform="translate(620 300)"><use href="#computer-shell"/>
+        <g id="screen-boot" opacity="0"><rect x="-90" y="-72" width="192" height="115" rx="3" fill="#e2ebdc"/><circle cx="6" cy="-29" r="14" fill="none" stroke="#6b9d88" stroke-width="4" stroke-dasharray="52 36" id="loading-ring"/><text x="6" y="8" text-anchor="middle" font-size="12" fill="#355a50">Starting the workday…</text></g>
+        <g id="screen-error" opacity="0"><rect x="-90" y="-72" width="192" height="115" rx="3" fill="#fcf5e5"/><text x="6" y="-48" text-anchor="middle" font-size="17" font-weight="bold" fill="#34574f">ChatGPT</text><path d="M-6-28h24v22H-6Z" rx="3" fill="#d9745b"/><text x="6" y="-11" text-anchor="middle" fill="#fff8e8" font-weight="bold" font-size="17">!</text><text x="6" y="12" text-anchor="middle" font-size="13" font-weight="bold" fill="#a34b3b">Something went wrong.</text><text x="6" y="31" text-anchor="middle" font-size="10" fill="#806958">Please try again later.</text></g>
+        <circle id="power-led" cx="86" cy="53" r="3" fill="#aedeaa" opacity="0"/>
+      </g>
+      <g id="speech" opacity="0"><path d="M320 58h337q20 0 20 20v51q0 20-20 20H458l-30 23 7-23H320q-20 0-20-20V78q0-20 20-20" fill="#fff9e9" stroke="#8aa18a" stroke-width="2"/><text id="speech-text" x="489" y="111" text-anchor="middle" fill="#365951" font-family="Georgia, serif" font-size="23">Good morning, internet.</text></g>
+      <g id="throw-lines" opacity="0" fill="none" stroke="#d78160" stroke-width="5" stroke-linecap="round"><path d="M690 180l79-25M693 217l88-9M713 255l60 7"/></g>
+      <g id="office-end" opacity="0"><rect x="519" y="257" width="171" height="114" rx="3" fill="#fff7dc" stroke="#baa17a" stroke-width="2" transform="rotate(-5 600 312)"/><text x="605" y="291" text-anchor="middle" font-size="13" fill="#365951">TODAY'S TO-DO</text><text x="605" y="321" text-anchor="middle" font-size="16" fill="#365951">✓ Keep light on.</text><text x="605" y="348" text-anchor="middle" font-size="16" fill="#365951">✓ Work offline.</text><path d="M550 383h123" stroke="#dfad53" stroke-width="7"/><path d="M673 379l13 4-13 4Z" fill="#365951"/></g>
+    </g>
+    <g id="outside-scene" visibility="hidden">
+      <path d="M0 0h1000v600H0Z" fill="url(#sky)"/><circle cx="834" cy="115" r="47" fill="#ecc775"/>
+      <use href="#cloud" x="550" y="71"/><use href="#cloud" x="88" y="111"/>
+      <path d="M0 391q160-30 320 0t340 0t340 0v209H0Z" fill="#97bdae"/>
+      <path d="M0 423h1000v177H0Z" fill="url(#ripples)"/>
+      <path d="M0 447q145-66 340-7l54 44-67 59H0Z" fill="#b4b28a"/><path d="M0 501l214-33 119 42-14 43H0Z" fill="#8a9b7d"/>
+      <g transform="translate(235 304)"><use href="#tower-art"/></g>
+      <g id="window-pelican" transform="translate(236 353) scale(.18)"><use href="#standing-pelican"/></g>
+      <g id="flying-computer"><use href="#computer-shell"/><path d="M-90-72h192v115H-90Z" fill="#f3ead6"/><text x="6" y="-8" text-anchor="middle" fill="#ab5845" font-size="20" font-weight="bold">OFFLINE</text></g>
+      <g id="splash" opacity="0" transform="translate(738 492)"><ellipse rx="80" ry="13" fill="none" stroke="#eaf1d9" stroke-width="5"/><path d="M-58 0L-80-41-34-20-25-66 0-24 29-72 41-22 79-47 59 0Z" fill="#eaf1d9"/><g fill="#eaf1d9"><ellipse cx="-83" cy="-69" rx="7" ry="12" transform="rotate(-25 -83 -69)"/><ellipse cx="65" cy="-94" rx="6" ry="11" transform="rotate(25 65 -94)"/></g></g>
+      <g id="splash-word" opacity="0" transform="rotate(-8 740 381)"><text x="740" y="381" text-anchor="middle" font-family="Georgia, serif" font-size="48" font-weight="bold" fill="#fff4da" stroke="#365951" stroke-width="1">SPLOOSH!</text></g>
+      <g id="gull" transform="translate(840 245)" fill="none" stroke="#436e60" stroke-width="4" stroke-linecap="round"><path d="M-26 0q13-17 26 0q13-17 26 0"/></g>
+    </g>
+    <rect id="transition" width="1000" height="600" fill="#f5f1e7" opacity="0" pointer-events="none"/>
+    <g id="chapter-label"><rect x="25" y="24" width="237" height="32" rx="16" fill="#fcf5e1" opacity=".88"/><text id="chapter-text" x="42" y="45" font-size="11" letter-spacing="2" fill="#365951">01 / THE MORNING COMMUTE</text></g>
+  </svg><p class="subtitle" id="subtitle" aria-live="off">Another beautiful day to be gainfully employed.</p></div>
+<div class="player"><button id="play" type="button">Pause</button><button id="replay" type="button">↺ Replay</button><label class="seek-label"><span class="sr-only">Cartoon position</span><input id="timeline" type="range" min="0" max="48" step="0.05" value="0"><output id="clock">0:00 / 0:48</output></label><label class="speed-label">Speed <select id="speed"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label></div>
+<nav class="chapters" aria-label="Cartoon chapters"><button data-time="0">01 · THE COMMUTE</button><button data-time="8">02 · CLOCKING IN</button><button data-time="14">03 · THE WORKDAY</button><button data-time="23">04 · TECHNICAL DIFFICULTIES</button><button data-time="32">05 · WINDOW OF OPPORTUNITY</button><button data-time="43">06 · OFFLINE</button></nav>
+<footer><span>GULL POINT LIGHTHOUSE · EST. 1893</span><span>A FICTIONAL TALE OF TECHNICAL DIFFICULTIES</span></footer>
+</main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id), clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)), mix=(a,b,p)=>a+(b-a)*p, smooth=p=>{p=clamp(p);return p*p*(3-2*p)}, attr=(id,k,v)=>$(id).setAttribute(k,v), show=(id,on)=>attr(id,'visibility',on?'visible':'hidden'), opacity=(id,v)=>attr(id,'opacity',clamp(v)), tr=(id,v)=>attr(id,'transform',v);
+const DURATION=48, reduced=matchMedia('(prefers-reduced-motion: reduce)');
+let t=0, rate=1, playing=!reduced.matches, last=null, frame=0;
+const chapters=[0,8,14,23,32,43], names=['01 / THE MORNING COMMUTE','02 / GULL POINT LIGHTHOUSE','03 / AN HONEST DAY’S WORK','04 / TECHNICAL DIFFICULTIES','05 / WINDOW OF OPPORTUNITY','06 / A FRESH START'];
+const lines=[[0,'Another beautiful day to be gainfully employed.'],[5,'Next stop: Gull Point Lighthouse.'],[9,'Home of the light. And the only office with a sea view.'],[14,'“Right. Coffee, computer, and a little help from ChatGPT.”'],[18,'One tiny button. A whole day of possibilities.'],[21,'Connecting to a brighter, more productive future…'],[23,'ChatGPT: “Something went wrong. Please try again later.”'],[26,'“Later? The ships are arriving NOW.”'],[29,'Retry. Retry. RETRY.'],[32,'“Fine. Let’s open a different window.”'],[35,'Technical support has left the building.'],[39,'Connection lost. Permanently.'],[43,'“Pencil. Paper. Lighthouse. I’ve got this.”'],[46,'THE END · Some days, it’s better to work offline.']];
+function leg(side,angle,hx,hy){let x=503+Math.cos(angle)*32,y=441+Math.sin(angle)*32,dx=x-hx,dy=y-hy,d=Math.hypot(dx,dy),b=Math.sqrt(Math.max(0,77*77-d*d/4));attr(side+'-leg','d',`M${hx} ${hy}L${(hx+x)/2+dy/d*b} ${(hy+y)/2-dx/d*b}L${x} ${y}`);tr(side+'-foot',`translate(${x} ${y}) rotate(${Math.sin(angle)*9})`);return{x,y}}
+function render(){
+ let chapter=0;chapters.forEach((s,i)=>{if(t>=s)chapter=i});$('chapter-text').textContent=names[chapter];document.querySelectorAll('[data-time]').forEach((el,i)=>el.setAttribute('aria-current',String(i===chapter)));
+ $('subtitle').textContent=lines.filter(([s])=>t>=s).at(-1)[1];$('timeline').value=t;$('clock').value=`0:${String(Math.floor(t)).padStart(2,'0')} / 0:48`;
+ show('commute-scene',t<14);show('office-scene',(t>=14&&t<36.6)||t>=43);show('outside-scene',t>=36.6&&t<43);
+ // Short cream dissolves separate shots; every pose derives from the same clock.
+ let fade=0;for(const cut of [14,36.6,43])fade=Math.max(fade,1-Math.abs(t-cut)/.35);opacity('transition',fade);
+ const rideT=Math.min(t,11),a=rideT*Math.PI*1.25,n=leg('near',a,459,343),f=leg('far',a+Math.PI,450,340);
+ attr('crank','d',`M${f.x} ${f.y}L${n.x} ${n.y}`);tr('rear-spokes',`rotate(${a*180/Math.PI*1.65})`);tr('front-spokes',`rotate(${a*180/Math.PI*1.65})`);tr('rider',`translate(0 ${t<11?Math.sin(a*2)*1.2:0})`);tr('scarf-tail',`rotate(${Math.sin(rideT*7)*4} 492 241)`);
+ tr('clouds',`translate(${-((rideT*10)%1100)} 0)`);attr('ripples','patternTransform',`translate(${-((t*25)%180)} 0)`);let travel=rideT*Math.PI*1.25*1.65*91;attr('road','patternTransform',`translate(${-(travel%240)} 0)`);tr('plants',`translate(${-(travel%1000)} 0)`);
+ let arrival=smooth((t-7)/4),s=mix(1,.43,arrival);tr('rider-position',`translate(${mix(0,434,arrival)} ${mix(0,281,arrival)}) scale(${s})`);tr('arrival-tower',`translate(${mix(1220,835,smooth((t-7)/3))} 321)`);opacity('bike-shadow',1-arrival);
+ opacity('rider-position',t<11.5?1:1-smooth((t-11.5)/.4));opacity('parked-bike',smooth((t-11.5)/.4));show('arrival-walker',t>=11.5);let walk=smooth((t-11.5)/2);tr('arrival-walker',`translate(${mix(684,835,walk)} ${466+Math.sin(walk*22)*3}) scale(.36)`);opacity('arrival-walker',1-smooth((t-13.1)/.5));
+ // Enter the office, reach for power, wait, then grow progressively furious.
+ let enter=smooth((t-14)/2),anger=t>=26&&t<36.6?clamp((t-26)/4):0,shake=t>=29&&t<32?Math.sin(t*61)*3:0;
+ let birdX=t>=43?398:mix(300,398,enter)+shake, birdY=t>=43?358:358+Math.sin(t*3)*.8;
+ tr('office-bird',`translate(${birdX} ${birdY})`);opacity('angry-brow',anger);opacity('red-cheek',anger*.66);opacity('steam',anger*.85);tr('steam',`translate(0 ${-Math.sin(t*6)*5})`);
+ let wing='M-36-17Q6-27 50 8L135 33Q142 40 130 47Q60 55 2 28';
+ if(t>=17&&t<20){let p=Math.sin(clamp((t-17)/3)*Math.PI);wing=`M-36-17Q45 ${mix(-27,-5,p)} 96 ${mix(8,-3,p)}L${mix(135,310,p)} ${mix(33,-4,p)}Q${mix(142,320,p)} ${mix(40,4,p)} ${mix(130,306,p)} ${mix(47,12,p)}Q60 55 2 28`}
+ if(t>=27&&t<32){let tap=Math.max(0,Math.sin(t*18))*10;wing=`M-36-17Q20-24 100 14L190 ${20-tap}Q206 ${22-tap} 194 ${32-tap}Q88 53 2 28`}
+ if(t>=32&&t<35.4){let p=smooth((t-32)/1.2);wing=`M-36-17Q0-70 65 ${mix(8,-97,p)}L${mix(135,230,p)} ${mix(33,-170,p)}Q250 ${mix(40,-181,p)} 244 ${mix(47,-155,p)}Q70-25 2 28`}
+ if(t>=35.4&&t<36.6)wing='M-36-17Q30-40 120-67L240-128Q260-132 250-111Q141-19 2 28';
+ attr('acting-wing','d',wing);
+ opacity('screen-boot',t>=18.6&&t<23?1:0);opacity('screen-error',t>=23?1:0);opacity('power-led',t>=18.6?1:0);tr('loading-ring',`rotate(${t*190} 6 -29)`);
+ let cx=620,cy=300,rot=0,computerScale=1;
+ if(t>=32&&t<34.7){let p=smooth((t-32)/1.25);cx=mix(620,640,p);cy=mix(300,135,p);rot=mix(0,-10,p);if(t>33.3){cx-=Math.sin((t-33.3)*2)*26;cy+=Math.sin((t-33.3)*2)*12;rot-=Math.sin((t-33.3)*2)*12}}
+ if(t>=34.7){let p=clamp((t-34.7)/1.65);cx=mix(631,1110,p);cy=139-25*Math.sin(p*Math.PI)+p*190;rot=mix(-14,65,p);computerScale=1-.66*smooth(p/.8)}
+ tr('office-computer',`translate(${cx} ${cy}) rotate(${rot}) scale(${computerScale})`);opacity('office-computer',t<36.6?1:0);opacity('keyboard',t<43?1:0);opacity('throw-lines',t>=35&&t<36.2?1:0);opacity('office-end',t>=43?1:0);
+ let speech=t>=15&&t<17.6?'Good morning, internet.':t>=25&&t<28?'Not today. Please, not today.':t>=29&&t<31.7?'OH, FOR FISH’S SAKE!':t>=32&&t<34.7?'Have you tried flying it?':t>=44?'Ah. Much better.':'';
+ $('speech-text').textContent=speech;opacity('speech',speech?1:0);
+ // Match the office exit to the exterior window, then a ballistic arc to the sea.
+ let flight=clamp((t-36.6)/2.7),fx=mix(259,738,flight),fy=350-200*Math.sin(Math.PI*flight)+142*flight;
+ tr('flying-computer',`translate(${fx} ${fy}) rotate(${flight*630}) scale(.34)`);opacity('flying-computer',t<39.3?1:0);
+ let splash=clamp((t-39.3)/1.4);opacity('splash',t>=39.3?1-splash*.8:0);tr('splash',`translate(738 492) scale(${.55+splash*.95} ${1-splash*.7})`);opacity('splash-word',t>=39.3&&t<41.7?1:0);
+ tr('gull',`translate(${840-Math.max(0,t-39)*20} ${245+Math.sin(t*4)*4})`);
+}
+function button(){ $('play').textContent=playing?'Pause':t>=DURATION?'Play again':'Play';$('play').setAttribute('aria-label',playing?'Pause cartoon':'Play cartoon') }
+function setPlaying(value){playing=value;cancelAnimationFrame(frame);last=null;button();if(playing)frame=requestAnimationFrame(tick)}
+function tick(now){if(!playing)return;if(last!==null)t=Math.min(DURATION,t+Math.min((now-last)/1000,.08)*rate);last=now;render();if(t>=DURATION)setPlaying(false);else frame=requestAnimationFrame(tick)}
+$('play').addEventListener('click',()=>{if(t>=DURATION)t=0;setPlaying(!playing);render()});$('replay').addEventListener('click',()=>{t=0;render();setPlaying(true)});$('timeline').addEventListener('input',e=>{t=Number(e.target.value);last=null;render();if(t>=DURATION)setPlaying(false)});$('speed').addEventListener('change',e=>{rate=Number(e.target.value)});document.querySelectorAll('[data-time]').forEach(el=>el.addEventListener('click',()=>{t=Number(el.dataset.time);last=null;render();button()}));document.addEventListener('visibilitychange',()=>{last=null});reduced.addEventListener('change',e=>{if(e.matches)setPlaying(false)});render();setPlaying(playing);
+})();
+</script><script id="pelican-preview-sizing">
+(() => {
+  if (window.parent === window) return;
+  document.documentElement.classList.add('pelican-embedded');
+  let pending = false;
+  let lastHeight = 0;
+  function measure() {
+    pending = false;
+    if (document.documentElement.clientWidth === 0) return;
+    const height = Math.ceil(document.body.getBoundingClientRect().height) + 2;
+    if (height > 0 && height !== lastHeight) {
+      lastHeight = height;
+      window.parent.postMessage({type: 'pelican-preview-height', height}, '*');
+    }
+  }
+  function schedule() {
+    if (!pending) { pending = true; requestAnimationFrame(measure); }
+  }
+  new ResizeObserver(schedule).observe(document.body);
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  window.addEventListener('message', event => {
+    if (event.source === window.parent && event.data?.type === 'pelican-preview-measure') {
+      lastHeight = 0;
+      schedule();
+    }
+  });
+  document.fonts.ready.then(schedule);
+  schedule();
+})();
+</script>
+</body></html>
